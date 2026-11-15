@@ -1,0 +1,10 @@
+.address-field-label {
+  font-weight: 600;
+}
+
+.address-field-error {
+  margin: 0.25rem 0 0;
+  color: #b02a37;
+  font-size: 0.875rem;
+  font-weight: 600;
+}

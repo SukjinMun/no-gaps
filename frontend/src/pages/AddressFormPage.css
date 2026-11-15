@@ -1,0 +1,22 @@
+.address-form-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.address-form-page h1 {
+  margin: 0.75rem 0 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.address-form-page-back {
+  font-size: 0.9rem;
+}
+
+.address-form-page-card {
+  padding: 1.25rem;
+  background-color: var(--bs-body-bg, #fff);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 0.5rem;
+}
