@@ -1,0 +1,52 @@
+.address-card {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr) auto;
+  gap: 0.75rem 1.25rem;
+  padding: 1.25rem;
+  background-color: var(--bs-body-bg, #fff);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 0.5rem;
+}
+
+.address-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.address-card-details {
+  overflow-wrap: anywhere;
+}
+
+.address-card-street {
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.address-card-place {
+  margin-bottom: 0.25rem;
+}
+
+.address-card-line {
+  margin-bottom: 0.25rem;
+}
+
+.address-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+@media (max-width: 575.98px) {
+  .address-card {
+    grid-template-columns: 1fr;
+  }
+
+  .address-card-actions {
+    justify-content: flex-start;
+  }
+}
