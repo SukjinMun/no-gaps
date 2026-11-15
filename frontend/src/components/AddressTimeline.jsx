@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import PropTypes from "prop-types";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import AddressCard from "./AddressCard.jsx";
 import { formatRange, monthsLabel } from "../utils/addressMonths.js";
@@ -33,15 +34,16 @@ export default function AddressTimeline({ addresses, check, total, query, setQue
           <span className="address-timeline-hint">· newest first</span>
         </div>
         {total > 0 && (
-          <label className="address-timeline-filter">
+          <Form.Label className="address-timeline-filter">
             Filter addresses
-            <input
+            <Form.Control
               type="search"
+              name="q"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Street, city or landlord"
             />
-          </label>
+          </Form.Label>
         )}
       </div>
 

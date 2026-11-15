@@ -1,3 +1,4 @@
+/* Card and header */
 .address-gap-check {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -27,6 +28,7 @@
   font-size: 14px;
 }
 
+/* Figures and bar */
 .address-gap-check-figures {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -68,6 +70,7 @@
   margin: 0;
 }
 
+/* Gap and overlap rows */
 .address-gap-check-list {
   margin: 0;
   padding: 0;
@@ -106,19 +109,20 @@
   font-size: 14px;
 }
 
+/* The Bootstrap button takes the gap colors */
 .address-gap-check-fill {
+  --bs-btn-padding-x: 12px;
+  --bs-btn-padding-y: 6px;
+  --bs-btn-color: var(--gap-text);
+  --bs-btn-bg: var(--surface);
+  --bs-btn-border-color: #c9a227;
+  --bs-btn-hover-color: var(--gap-text);
+  --bs-btn-hover-bg: var(--gap-bg);
+  --bs-btn-hover-border-color: #c9a227;
+  --bs-btn-active-color: var(--gap-text);
+  --bs-btn-active-bg: var(--gap-bg);
+  --bs-btn-active-border-color: #c9a227;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   min-height: 44px;
-  padding: 6px 12px;
-  border: 1px solid #c9a227;
-  border-radius: 6px;
-  background: var(--surface);
-  color: var(--gap-text);
-  text-decoration: none;
-}
-
-.address-gap-check-fill:hover {
-  color: var(--gap-text);
 }

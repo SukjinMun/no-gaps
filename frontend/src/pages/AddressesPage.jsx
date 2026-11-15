@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import AddressGapCheck from "../components/AddressGapCheck.jsx";
 import AddressTimeline from "../components/AddressTimeline.jsx";
@@ -74,9 +76,9 @@ export default function AddressesPage() {
           </p>
         </div>
         {status === "ready" && (
-          <Link className="addresses-page-add" to="/addresses/new">
+          <Button as={Link} className="addresses-page-add" to="/addresses/new">
             + Add address
-          </Link>
+          </Button>
         )}
       </div>
 
@@ -88,14 +90,18 @@ export default function AddressesPage() {
 
       {status === "login" && (
         <p className="addresses-page-status">
-          Please <a href="/login">log in</a> to see your addresses.
+          Please{" "}
+          <Link to="/login" reloadDocument>
+            log in
+          </Link>{" "}
+          to see your addresses.
         </p>
       )}
 
       {status === "error" && (
-        <p role="alert" className="addresses-page-alert">
+        <Alert variant="danger" className="addresses-page-alert">
           The addresses could not be loaded. Try again.
-        </p>
+        </Alert>
       )}
 
       {status === "ready" && (
@@ -113,9 +119,9 @@ export default function AddressesPage() {
             </ol>
           </details>
           {deleteFailed && (
-            <p role="alert" className="addresses-page-alert">
+            <Alert variant="danger" className="addresses-page-alert">
               The address could not be deleted. Try again.
-            </p>
+            </Alert>
           )}
           <AddressGapCheck check={check} />
           <AddressTimeline

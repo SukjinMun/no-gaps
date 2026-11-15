@@ -1,3 +1,4 @@
+/* Label, control and error */
 .address-field {
   display: flex;
   flex-direction: column;
@@ -5,6 +6,7 @@
 }
 
 .address-field-label {
+  margin-bottom: 0;
   font-weight: 600;
 }
 
@@ -13,21 +15,10 @@
   color: var(--muted);
 }
 
-.address-field input,
-.address-field textarea {
-  width: 100%;
+.address-field .form-control {
   min-height: 44px;
   padding: 10px 12px;
-  border: 1px solid var(--input-border);
-  border-radius: 6px;
-}
-
-.address-field textarea {
-  resize: vertical;
-}
-
-.address-field input:disabled {
-  background: #e9ecef;
+  border-color: var(--input-border);
 }
 
 .address-field [aria-invalid="true"] {

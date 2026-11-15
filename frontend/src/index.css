@@ -26,6 +26,54 @@
   --bar-muted: #cbd5e1;
 }
 
+/* Bootstrap loads first. These rules keep the browser defaults that the shared pages rely on. */
+.navbar {
+  display: block;
+  position: static;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  line-height: inherit;
+}
+
+dt {
+  font-weight: normal;
+}
+
+legend {
+  float: none;
+  width: auto;
+  margin-bottom: 0;
+  font-size: inherit;
+}
+
+img {
+  vertical-align: baseline;
+}
+
+input {
+  margin: revert;
+}
+
+::-webkit-datetime-edit {
+  display: revert;
+}
+
+::-webkit-datetime-edit,
+::-webkit-datetime-edit-fields-wrapper,
+::-webkit-datetime-edit-text,
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-year-field {
+  padding: revert;
+}
+
 * {
   box-sizing: border-box;
 }

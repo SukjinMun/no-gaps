@@ -1,3 +1,4 @@
+/* Page and header */
 .addresses-page {
   width: 100%;
   max-width: 1040px;
@@ -27,37 +28,31 @@
   max-width: 620px;
 }
 
+/* The Bootstrap button takes the shared primary color */
 .addresses-page-add {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  --bs-btn-padding-x: 18px;
+  --bs-btn-padding-y: 10px;
+  --bs-btn-border-width: 0;
+  --bs-btn-font-weight: 600;
+  --bs-btn-bg: var(--primary);
+  --bs-btn-hover-bg: var(--primary-dark);
+  --bs-btn-active-bg: var(--primary-dark);
   min-height: 44px;
-  padding: 10px 18px;
-  border-radius: 6px;
-  background: var(--primary);
-  color: #ffffff;
-  font-weight: 600;
-  text-decoration: none;
 }
 
-.addresses-page-add:hover {
-  color: #ffffff;
-}
-
+/* Messages */
 .addresses-page-status {
   margin: 0;
   color: var(--muted);
 }
 
 .addresses-page-alert {
-  margin: 0;
-  background: var(--danger-bg);
-  color: #58151c;
-  border: 1px solid #f1aeb5;
-  border-radius: 6px;
-  padding: 10px 14px;
+  --bs-alert-padding-x: 14px;
+  --bs-alert-padding-y: 10px;
+  --bs-alert-margin-bottom: 0;
 }
 
+/* Help block */
 .addresses-page-help {
   background: var(--surface);
   border: 1px solid var(--border);
