@@ -27,7 +27,7 @@ export default function NavBar({ username, onLogOut }) {
         {username ? (
           <>
             <div className="navbar__links">
-              {/* Suk: add the Addresses link here. */}
+              <NavLink to="/addresses">Addresses</NavLink>
               <NavLink to="/activities">Jobs &amp; Schools</NavLink>
             </div>
             <div className="navbar__user">

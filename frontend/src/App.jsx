@@ -5,6 +5,8 @@ import Footer from "./components/Footer.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import RegisterForm from "./components/RegisterForm.jsx";
 import ActivitiesPage from "./pages/ActivitiesPage.jsx";
+import AddressesPage from "./pages/AddressesPage.jsx";
+import AddressFormPage from "./pages/AddressFormPage.jsx";
 import { getMe, logOut } from "./api/authApi.js";
 import "./App.css";
 
@@ -41,7 +43,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Navigate to={user ? "/activities" : "/login"} replace />} />
         <Route path="/activities" element={loggedIn(<ActivitiesPage />)} />
-        {/* Suk: <Route path="/addresses" element={loggedIn(<AddressesPage />)} /> */}
+        <Route path="/addresses" element={loggedIn(<AddressesPage />)} />
+        <Route path="/addresses/new" element={loggedIn(<AddressFormPage />)} />
+        <Route path="/addresses/:id/edit" element={loggedIn(<AddressFormPage />)} />
         <Route
           path="/login"
           element={
