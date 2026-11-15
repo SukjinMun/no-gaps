@@ -21,5 +21,4 @@ const formatMonth = (month) => {
 export const formatRange = (from, to) =>
   `${formatMonth(from)} – ${to ? formatMonth(to) : "Present"}`;
 
-export const monthsLabel = (count) =>
-  `${count} ${count === 1 ? "month" : "months"}`;
+export const monthsLabel = (count) => `${count} ${count === 1 ? "month" : "months"}`;

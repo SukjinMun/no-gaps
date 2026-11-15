@@ -1,43 +1,62 @@
+.address-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .address-timeline-header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 0.5rem 1rem;
-  margin-bottom: 0.75rem;
+  gap: 8px 16px;
 }
 
 .address-timeline-heading {
   display: flex;
   align-items: baseline;
-  gap: 0.375rem;
+  gap: 6px;
 }
 
 .address-timeline-title {
-  margin-bottom: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
+  margin: 0;
+  font-size: 20px;
+}
+
+.address-timeline-hint {
+  color: var(--muted);
+  font-size: 16px;
 }
 
 .address-timeline-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   width: 100%;
-  max-width: 18rem;
-  margin-bottom: 0;
-  font-size: 0.875rem;
+  max-width: 288px;
   font-weight: 600;
 }
 
-.address-timeline-filter .form-control {
-  margin-top: 0.25rem;
+.address-timeline-filter input {
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  min-height: 44px;
+  width: 100%;
+  font-weight: 400;
+}
+
+.address-timeline-message {
+  margin: 0;
 }
 
 .address-timeline-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .address-timeline-gap {
@@ -45,20 +64,24 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem 1rem;
-  padding: 0.75rem 1.25rem;
-  color: var(--bs-warning-text-emphasis, #664d03);
-  background-color: var(--bs-warning-bg-subtle, #fff3cd);
-  border: 2px dashed var(--bs-warning-border-subtle, #ffe69c);
-  border-radius: 0.5rem;
+  gap: 8px 16px;
+  padding: 12px 20px;
+  background: var(--gap-bg);
+  border: 2px dashed var(--gap-border);
+  border-radius: var(--radius);
+  color: var(--gap-text);
 }
 
 .address-timeline-gap-link {
-  color: var(--bs-warning-text-emphasis, #664d03);
+  color: var(--gap-text);
   font-weight: 600;
 }
 
-@media (max-width: 575.98px) {
+.address-timeline-gap-link:hover {
+  color: var(--gap-text);
+}
+
+@media (max-width: 600px) {
   .address-timeline-filter {
     max-width: none;
   }

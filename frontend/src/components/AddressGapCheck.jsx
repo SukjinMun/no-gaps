@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { formatRange, monthsLabel } from "../utils/addressMonths.js";
 import "./AddressGapCheck.css";
 
@@ -22,7 +21,7 @@ export default function AddressGapCheck({ check }) {
     <section className="address-gap-check" aria-label="Gap check">
       <div className="address-gap-check-header">
         <h2 className="address-gap-check-title">Gap check</h2>
-        <p className="address-gap-check-range small text-body-secondary">
+        <p className="address-gap-check-range">
           Last {check.years} years · {formatRange(check.from, check.to)}
         </p>
       </div>
@@ -34,13 +33,15 @@ export default function AddressGapCheck({ check }) {
           </strong>
           <small>months covered</small>
         </p>
-        <p className="address-gap-check-figure address-gap-check-figure-gaps">
+        <p
+          className={`address-gap-check-figure${gapCount > 0 ? " address-gap-check-figure-gaps" : ""}`}
+        >
           <strong>{gapText}</strong>
-          <small>
-            {monthsLabel(check.totalMonths - check.coveredMonths)} unrecorded
-          </small>
+          <small>{monthsLabel(check.totalMonths - check.coveredMonths)} unrecorded</small>
         </p>
-        <p className="address-gap-check-figure address-gap-check-figure-overlaps">
+        <p
+          className={`address-gap-check-figure${overlapCount > 0 ? " address-gap-check-figure-overlaps" : ""}`}
+        >
           <strong>{overlapText}</strong>
           <small>{monthsLabel(check.overlapMonths)} at two addresses</small>
         </p>
@@ -62,18 +63,16 @@ export default function AddressGapCheck({ check }) {
           {check.gaps.map((gap) => (
             <li key={gap.from} className="address-gap-check-gap">
               <span>
-                <strong>{formatRange(gap.from, gap.to)}</strong> ·{" "}
-                {monthsLabel(gap.months)} unrecorded
+                <strong>{formatRange(gap.from, gap.to)}</strong> · {monthsLabel(gap.months)}{" "}
+                unrecorded
                 {gap.from === check.from && " (start of range)"}
               </span>
-              <Button
-                as={Link}
-                variant="outline-secondary"
-                size="sm"
+              <Link
+                className="address-gap-check-fill"
                 to={`/addresses/new?start=${encodeURIComponent(gap.from)}&end=${encodeURIComponent(gap.to)}`}
               >
                 Add address for these months
-              </Button>
+              </Link>
             </li>
           ))}
           {check.overlaps.map((overlap) => (
@@ -86,9 +85,7 @@ export default function AddressGapCheck({ check }) {
                 {monthsLabel(overlap.months)} at two addresses
               </span>
               <small className="address-gap-check-streets">
-                {overlap.addresses
-                  .map((address) => address.street)
-                  .join(" and ")}
+                {overlap.addresses.map((address) => address.street).join(" and ")}
               </small>
             </li>
           ))}

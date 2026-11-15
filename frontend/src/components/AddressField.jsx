@@ -1,6 +1,5 @@
 import { useId } from "react";
 import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
 import "./AddressField.css";
 
 export default function AddressField({
@@ -17,17 +16,16 @@ export default function AddressField({
 }) {
   const id = useId();
   const errorId = `${id}-error`;
+  const Control = type === "textarea" ? "textarea" : "input";
 
   return (
-    <>
-      <Form.Label className="address-field-label" htmlFor={id}>
+    <div className="address-field">
+      <label className="address-field-label" htmlFor={id}>
         {label}
-        {optional && (
-          <span className="fw-normal text-body-secondary"> (optional)</span>
-        )}
-      </Form.Label>
-      <Form.Control
-        {...(type === "textarea" ? { as: "textarea", rows: 3 } : { type })}
+        {optional && <span className="address-field-optional"> (optional)</span>}
+      </label>
+      <Control
+        {...(type === "textarea" ? { rows: 3 } : { type })}
         id={id}
         name={name}
         value={value}
@@ -35,7 +33,6 @@ export default function AddressField({
         autoComplete={autoComplete}
         min={min}
         disabled={disabled}
-        isInvalid={Boolean(error)}
         aria-invalid={error ? "true" : undefined}
         aria-describedby={error ? errorId : undefined}
       />
@@ -44,7 +41,7 @@ export default function AddressField({
           {error}
         </p>
       )}
-    </>
+    </div>
   );
 }
 

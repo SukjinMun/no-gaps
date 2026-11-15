@@ -1,8 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import Badge from "react-bootstrap/Badge";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { formatRange } from "../utils/addressMonths.js";
 import "./AddressCard.css";
 
@@ -15,31 +13,22 @@ export default function AddressCard({ address, overlapping, onDelete }) {
     place = `${place} · ${address.country}`;
   }
 
-  const landlord = [
-    address.landlordName,
-    address.landlordPhone,
-    address.landlordEmail,
-  ].filter(Boolean);
+  const landlord = [address.landlordName, address.landlordPhone, address.landlordEmail].filter(
+    Boolean,
+  );
 
   return (
     <article className="address-card">
-      <div>
+      <div className="address-card-dates">
         <strong>
-          {formatRange(
-            address.startMonth,
-            address.current ? null : address.endMonth,
-          )}
+          {formatRange(address.startMonth, address.current ? null : address.endMonth)}
         </strong>
         <div className="address-card-badges">
           {address.current && (
-            <Badge pill bg="primary-subtle" text="primary-emphasis">
-              Current
-            </Badge>
+            <span className="address-card-badge address-card-badge-current">Current</span>
           )}
           {overlapping && (
-            <Badge pill bg="danger-subtle" text="danger-emphasis">
-              Overlap
-            </Badge>
+            <span className="address-card-badge address-card-badge-overlap">Overlap</span>
           )}
         </div>
       </div>
@@ -48,55 +37,49 @@ export default function AddressCard({ address, overlapping, onDelete }) {
         <h3 className="address-card-street">
           {address.unit ? `${address.street}, ${address.unit}` : address.street}
         </h3>
-        <p className="address-card-place text-body-secondary">{place}</p>
+        <p className="address-card-place">{place}</p>
         {landlord.length > 0 && (
-          <p className="address-card-line small">
-            Landlord: {landlord.join(" · ")}
-          </p>
+          <p className="address-card-line">Landlord: {landlord.join(" · ")}</p>
         )}
-        {address.notes !== "" && (
-          <p className="address-card-line small">{address.notes}</p>
-        )}
+        {address.notes !== "" && <p className="address-card-line">{address.notes}</p>}
       </div>
 
       <div className="address-card-actions">
         {confirming ? (
           <>
-            <span className="small">Delete this address?</span>
-            <Button
-              variant="danger"
-              size="sm"
+            <span className="address-card-confirm">Delete this address?</span>
+            <button
+              type="button"
+              className="address-card-button address-card-button-danger-solid"
               onClick={() => onDelete(address._id)}
             >
               Yes, delete
-            </Button>
-            <Button
-              variant="outline-secondary"
-              size="sm"
+            </button>
+            <button
+              type="button"
+              className="address-card-button"
               onClick={() => setConfirming(false)}
             >
               Cancel
-            </Button>
+            </button>
           </>
         ) : (
           <>
-            <Button
-              as={Link}
-              variant="outline-primary"
-              size="sm"
+            <Link
+              className="address-card-edit"
               to={`/addresses/${encodeURIComponent(address._id)}/edit`}
               aria-label={`Edit ${address.street}`}
             >
               Edit
-            </Button>
-            <Button
-              variant="outline-danger"
-              size="sm"
+            </Link>
+            <button
+              type="button"
+              className="address-card-button address-card-button-danger"
               aria-label={`Delete ${address.street}`}
               onClick={() => setConfirming(true)}
             >
               Delete
-            </Button>
+            </button>
           </>
         )}
       </div>

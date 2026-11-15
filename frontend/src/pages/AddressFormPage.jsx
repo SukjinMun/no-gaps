@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import Alert from "react-bootstrap/Alert";
-import { Link, useNavigate, useParams, useSearchParams } from "react-router";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import AddressForm from "../components/AddressForm.jsx";
-import { useUser } from "../context/UserContext.jsx";
 import "./AddressFormPage.css";
 
 const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
@@ -29,7 +27,6 @@ export default function AddressFormPage() {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const user = useUser();
   const [address, setAddress] = useState(() =>
     id
       ? null
@@ -75,14 +72,11 @@ export default function AddressFormPage() {
 
   const saveAddress = async (newAddress) => {
     try {
-      const res = await fetch(
-        id ? `/api/addresses/${encodeURIComponent(id)}` : "/api/addresses",
-        {
-          method: id ? "PUT" : "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newAddress),
-        },
-      );
+      const res = await fetch(id ? `/api/addresses/${encodeURIComponent(id)}` : "/api/addresses", {
+        method: id ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newAddress),
+      });
       if (res.ok) {
         navigate("/addresses");
         return;
@@ -103,28 +97,26 @@ export default function AddressFormPage() {
     }
   };
 
-  const needsLogin = status === "login" || (!id && !user);
-
   return (
-    <div className="address-form-page">
+    <main className="address-form-page">
       <Link className="address-form-page-back" to="/addresses">
         ← Back to Addresses
       </Link>
       <h1>{id ? "Edit address" : "Add address"}</h1>
 
       {status === "loading" && <p role="status">Loading address...</p>}
-      {needsLogin && (
+      {status === "login" && (
         <p>
-          Please <Link to="/login">log in</Link> to add or edit an address.
+          Please <a href="/login">log in</a> to add or edit an address.
         </p>
       )}
       {status === "missing" && <p>Address not found.</p>}
       {status === "error" && (
-        <Alert variant="danger">
+        <p role="alert" className="address-form-page-alert">
           The address could not be loaded. Try again.
-        </Alert>
+        </p>
       )}
-      {status === "ready" && !needsLogin && (
+      {status === "ready" && (
         <div className="address-form-page-card">
           <AddressForm
             initialAddress={address}
@@ -134,7 +126,7 @@ export default function AddressFormPage() {
           />
         </div>
       )}
-    </div>
+    </main>
   );
 }
 

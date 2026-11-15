@@ -1,42 +1,27 @@
 import { useMemo } from "react";
 import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import AddressCard from "./AddressCard.jsx";
 import { formatRange, monthsLabel } from "../utils/addressMonths.js";
 import "./AddressTimeline.css";
 
-export default function AddressTimeline({
-  addresses,
-  check,
-  total,
-  query,
-  setQuery,
-  onDelete,
-}) {
+export default function AddressTimeline({ addresses, check, total, query, setQuery, onDelete }) {
   const rows = useMemo(() => {
     const merged = [
       ...addresses.map((address) => ({ start: address.startMonth, address })),
       ...check.gaps.map((gap) => ({ start: gap.from, gap })),
     ];
     return merged.sort(
-      (a, b) =>
-        b.start.localeCompare(a.start) || (a.gap ? 1 : 0) - (b.gap ? 1 : 0),
+      (a, b) => b.start.localeCompare(a.start) || (a.gap ? 1 : 0) - (b.gap ? 1 : 0),
     );
   }, [addresses, check.gaps]);
 
   const isOverlapping = (id) =>
-    check.overlaps.some((overlap) =>
-      overlap.addresses.some((address) => address._id === id),
-    );
+    check.overlaps.some((overlap) => overlap.addresses.some((address) => address._id === id));
 
   const renderCard = (address) => (
     <li key={address._id}>
-      <AddressCard
-        address={address}
-        overlapping={isOverlapping(address._id)}
-        onDelete={onDelete}
-      />
+      <AddressCard address={address} overlapping={isOverlapping(address._id)} onDelete={onDelete} />
     </li>
   );
 
@@ -45,36 +30,36 @@ export default function AddressTimeline({
       <div className="address-timeline-header">
         <div className="address-timeline-heading">
           <h2 className="address-timeline-title">Timeline</h2>
-          <span className="small text-body-secondary">· newest first</span>
+          <span className="address-timeline-hint">· newest first</span>
         </div>
         {total > 0 && (
-          <Form.Label className="address-timeline-filter">
+          <label className="address-timeline-filter">
             Filter addresses
-            <Form.Control
+            <input
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Street, city or landlord"
             />
-          </Form.Label>
+          </label>
         )}
       </div>
 
       {total === 0 && (
-        <p>No addresses yet. Add your first address to start the timeline.</p>
+        <p className="address-timeline-message">
+          No addresses yet. Add your first address to start the timeline.
+        </p>
       )}
 
       {total > 0 && query !== "" && (
         <>
-          <p role="status">
+          <p role="status" className="address-timeline-message">
             {addresses.length > 0
               ? `${addresses.length} of ${total} addresses match.`
               : "No address matches this filter."}
           </p>
           {addresses.length > 0 && (
-            <ol className="address-timeline-list">
-              {addresses.map(renderCard)}
-            </ol>
+            <ol className="address-timeline-list">{addresses.map(renderCard)}</ol>
           )}
         </>
       )}

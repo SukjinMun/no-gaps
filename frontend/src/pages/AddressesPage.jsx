@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import AddressGapCheck from "../components/AddressGapCheck.jsx";
 import AddressTimeline from "../components/AddressTimeline.jsx";
 import "./AddressesPage.css";
@@ -66,34 +64,38 @@ export default function AddressesPage() {
   };
 
   return (
-    <div className="addresses-page">
+    <main className="addresses-page">
       <div className="addresses-page-header">
         <div>
           <h1 className="addresses-page-title">Addresses</h1>
-          <p className="addresses-page-lead text-body-secondary">
-            Every address you lived at, with any missing months and overlaps in
-            the last 5 years flagged.
+          <p className="addresses-page-lead">
+            Every address you lived at, with any missing months and overlaps in the last 5 years
+            flagged.
           </p>
         </div>
         {status === "ready" && (
-          <Button as={Link} variant="primary" to="/addresses/new">
+          <Link className="addresses-page-add" to="/addresses/new">
             + Add address
-          </Button>
+          </Link>
         )}
       </div>
 
-      {status === "loading" && <p role="status">Loading addresses...</p>}
+      {status === "loading" && (
+        <p role="status" className="addresses-page-status">
+          Loading addresses...
+        </p>
+      )}
 
       {status === "login" && (
-        <p>
-          Please <Link to="/login">log in</Link> to see your addresses.
+        <p className="addresses-page-status">
+          Please <a href="/login">log in</a> to see your addresses.
         </p>
       )}
 
       {status === "error" && (
-        <Alert variant="danger">
+        <p role="alert" className="addresses-page-alert">
           The addresses could not be loaded. Try again.
-        </Alert>
+        </p>
       )}
 
       {status === "ready" && (
@@ -101,21 +103,19 @@ export default function AddressesPage() {
           <details className="addresses-page-help">
             <summary>How to use this page</summary>
             <ol>
+              <li>Add each address you lived at, with its start and end month.</li>
+              <li>Check “I live here now” for your current address.</li>
               <li>
-                Add each address you lived at, with its start and end month.
-              </li>
-              <li>Check "I live here now" for your current address.</li>
-              <li>
-                Read the gap check. A yellow row is a period with no address. A
-                red row is a period with two addresses.
+                Read the gap check. A yellow row is a period with no address. A red row is a period
+                with two addresses.
               </li>
               <li>Use Edit or Delete to fix an address.</li>
             </ol>
           </details>
           {deleteFailed && (
-            <Alert variant="danger">
+            <p role="alert" className="addresses-page-alert">
               The address could not be deleted. Try again.
-            </Alert>
+            </p>
           )}
           <AddressGapCheck check={check} />
           <AddressTimeline
@@ -128,7 +128,7 @@ export default function AddressesPage() {
           />
         </>
       )}
-    </div>
+    </main>
   );
 }
 
