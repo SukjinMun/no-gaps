@@ -22,6 +22,11 @@ does not verify anything.
 Each history works and is graded on its own. The Jobs & Schools part never reads the addresses
 collection, and the other way around.
 
+| Part of this document | Author |
+| --- | --- |
+| Personas Marcus and Grace, the Jobs & Schools stories and rules, the `users` and `activities` data, the activities API, the Jobs & Schools page, wireframes 01 to 04, login and registration | Alejandra |
+| Personas Dana and Minh, the address stories and rules, the `addresses` data, the addresses API, the Addresses page, wireframes 05 and 06 | Suk |
+
 ## 2. User personas
 
 ### Marcus, new hire
@@ -38,7 +43,23 @@ collection, and the other way around.
 - Took a break to care for a family member and spent some months between jobs.
 - Wants to see at a glance which months are missing before she submits.
 
+### Dana, renter
+
+- Applying for a new apartment.
+- Each application asks for every past address with the landlord's name and phone.
+- Has to dig through old leases to find them.
+- Wants to write each address down once with its landlord contact.
+
+### Minh, international graduate
+
+- Preparing a green card form.
+- The form asks for every address of the last five years.
+- Moved six times and does not remember the exact months.
+- Wants to see which months are missing or doubled before the form goes out.
+
 ## 3. User stories
+
+### Jobs & Schools (Alejandra)
 
 1. As Marcus, I want to add each job and school with its dates and supervisor, so I have
    everything the background check asks for in one place.
@@ -54,24 +75,53 @@ Supporting stories:
   missing.
 - As Grace, I want to click a missing period and start an entry with its dates already filled in.
 
+### Addresses (Suk)
+
+1. As Dana, I want to add each past address with its dates and landlord contact so I can stop
+   digging through old leases.
+2. As Minh, I want to see my last five years of addresses with missing months and overlaps
+   flagged so I can complete my form.
+3. As Minh, I want to edit or delete an address so I can fix a wrong date before it goes on an
+   official form.
+
+Supporting stories:
+
+- As Minh, I want to click a missing period and start an address with its months already filled
+  in so I do not type them again.
+- As Dana, I want to filter my addresses by street or landlord so I can find one lease fast.
+
 ## 4. Gap rules
 
 These rules were agreed by both authors and apply to both histories.
 
 - Dates have month precision, in `YYYY-MM` format. The start and end months both count as
   covered.
-- A record marked as current (`isCurrent: true`) runs to the current month and has no end month.
+- A record marked as current (`isCurrent: true` in activities, `current: true` in addresses)
+  runs to the current month and has no end month.
+- Consecutive unrecorded months form a gap.
+- A gap is shown as "months unrecorded", never as an error or a failure.
+
+### Jobs & Schools rules
+
 - The checked range is the last 10 years, including the current month. The API also accepts 5
   or 7 years.
 - Each month in the range is **covered** (a job or school), **explained** (only an "other"
-  activity) or **unrecorded**. Consecutive unrecorded months form a gap.
+  activity) or **unrecorded**.
 - Overlaps are normal (working and studying at the same time) and are never flagged.
-- A gap is shown as "months unrecorded", never as an error or a failure.
+
+### Address rules
+
+- The checked range is the last 5 years, including the current month.
+- Each month in the range is **covered** (at least one address) or **unrecorded**.
+- Two addresses overlap when the later one starts before the earlier one ends. An overlap is
+  listed with its months and both streets so the user can fix a wrong date.
+- A move inside one month is not an overlap. The old address ends and the new address starts in
+  that same month.
 
 ## 5. Data model
 
-MongoDB with the native driver (no Mongoose). Every activity belongs to one user, and every
-query filters by that user's id.
+MongoDB with the native driver (no Mongoose). Every activity and every address belongs to
+one user, and every query filters by that user's id.
 
 ### `users`
 
@@ -101,6 +151,28 @@ query filters by that user's id.
 The end month can't be before the start month. Several current records are allowed at once.
 Index: `{ userId: 1, startMonth: 1 }`.
 
+### `addresses`
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `userId` | ObjectId | From the session |
+| `street` | string | Required |
+| `unit` | string | Optional |
+| `city` | string | Required |
+| `state` | string | Optional |
+| `zip` | string | Optional |
+| `country` | string | Required. The form starts with United States |
+| `startMonth` | `YYYY-MM` | Required |
+| `endMonth` | `YYYY-MM` or null | Required unless current |
+| `current` | boolean | True for the address the user lives at now |
+| `landlordName`, `landlordPhone`, `landlordEmail` | string | Optional |
+| `notes` | string | Optional |
+| `createdAt`, `updatedAt` | Date | |
+| `seeded` | boolean | Only on seeded addresses |
+
+The end month can't be before the start month. A text field holds at most 200 characters and
+the notes hold at most 1,000. The seed creates the index `{ userId: 1, startMonth: -1 }`.
+
 ## 6. Architecture
 
 ![No Gaps architecture: React frontend, Express backend with Passport and sessions, and MongoDB](architecture.svg)
@@ -112,7 +184,8 @@ Index: `{ userId: 1, startMonth: 1 }`.
 
 ### API
 
-All `/api/activities` routes need a session and only touch the logged-in user's records.
+All `/api/activities` and `/api/addresses` routes need a session and only touch the logged-in
+user's records.
 
 | Method | Route | Does |
 | --- | --- | --- |
@@ -125,6 +198,11 @@ All `/api/activities` routes need a session and only touch the logged-in user's 
 | POST | `/api/activities` | Add one (201, or 400 with `{ errors }`) |
 | PUT | `/api/activities/:id` | Edit one of mine (404 if it isn't mine) |
 | DELETE | `/api/activities/:id` | Delete one of mine (204, or 404) |
+| GET | `/api/addresses?q=` | List my addresses, newest first, with the gap and overlap check. `q` filters the list by street, city or landlord |
+| GET | `/api/addresses/:id` | Read one of mine (404 if it isn't mine) |
+| POST | `/api/addresses` | Add one (201, or 400 with `{ error, errors }`) |
+| PUT | `/api/addresses/:id` | Edit one of mine (404 if it isn't mine) |
+| DELETE | `/api/addresses/:id` | Delete one of mine (200, or 404) |
 
 The gaps response (shortened; `coveredMonths` includes the explained months):
 
@@ -145,6 +223,36 @@ The gaps response (shortened; `coveredMonths` includes the explained months):
 
 `timeline` splits the range into consecutive segments that share the same activities. A
 segment with no ids is a gap.
+
+The addresses response is below in a short form. The check always covers every address of the
+user, so a filter changes only the list.
+
+```json
+{
+  "addresses": [{ "_id": "...", "street": "1420 Alder St", "current": true }],
+  "total": 4,
+  "check": {
+    "years": 5,
+    "from": "2021-12",
+    "to": "2026-11",
+    "totalMonths": 60,
+    "coveredMonths": 57,
+    "gaps": [{ "from": "2023-10", "to": "2023-12", "months": 3 }],
+    "overlaps": [
+      {
+        "from": "2022-03",
+        "to": "2022-04",
+        "months": 2,
+        "addresses": [
+          { "_id": "...", "street": "300 Cedar Blvd" },
+          { "_id": "...", "street": "9 Birch Ct" }
+        ]
+      }
+    ],
+    "overlapMonths": 2
+  }
+}
+```
 
 ## 7. Interface design
 
@@ -170,10 +278,31 @@ segment with no ids is a gap.
 
 Screenshot of the built page: [screenshot.gif](screenshot.gif).
 
+### Addresses page, top to bottom
+
+1. **Header.** The same header as on every page, with Addresses marked as the current page.
+2. **Title** and the "+ Add address" button.
+3. **"How to use this page".** A collapsible help section with four steps.
+4. **Gap check.** The months covered and the counts of gaps and overlaps for the last 5 years. A
+   progress bar shows the covered share. Each gap has an "Add address for these months" button.
+   Each overlap names its months and both streets. A gap row is yellow and an overlap row is red.
+5. **Filter.** A search box above the list narrows it by street, city or landlord. The gap check
+   stays complete.
+6. **Timeline list.** Every address with Edit and Delete in newest-first order. Delete asks to
+   confirm. A gap shows as a dashed row between the two addresses around it. An address in an
+   overlap carries an "Overlap" badge.
+7. **Footer.** The same footer as on every page.
+
+The form to add or edit an address has its own page (`/addresses/new` and
+`/addresses/:id/edit`), so a gap row can link to a form with its months filled in.
+
+The screenshot [addresses.png](addresses.png) shows the Addresses page.
+
 ### Design mockups
 
 Low-fidelity wireframes drawn before building the Jobs & Schools timeline. The numbered notes
-on each one explain the design decisions.
+on each one explain the design decisions. Wireframes 01 to 04 are those drawings. Wireframes 05
+and 06 show the two address pages.
 
 #### Wireframe 01: Log in and create account
 
@@ -212,6 +341,25 @@ on each one explain the design decisions.
 2. **Big touch targets.** Buttons are at least 44 px; the add button spans the full width.
 3. **Menu.** Links collapse into a ≡ menu on small screens.
 
+#### Wireframe 05: Addresses timeline
+
+![Wireframe 05: Addresses page with the gap check and the list](mockups/05-addresses-timeline.png)
+
+1. **Add button.** Always at the top of the page.
+2. **Gap check first.** The numbers and the missing months come before the list.
+3. **Overlaps.** Two addresses in the same months get one row with both streets.
+4. **Filter.** Street, city or landlord. The gap check does not change.
+5. **List, newest first.** A gap sits between the two addresses around it with a link to fill it.
+
+#### Wireframe 06: Add or edit an address
+
+![Wireframe 06: address form with the address, the months and the landlord](mockups/06-address-form.png)
+
+1. **Address first.** Street and city are required. Unit, state and ZIP are optional.
+2. **Month and year only.** The error shows right under the field. "I live here now" switches off
+   the end month.
+3. **Landlord.** Name, phone and email for a rental form. Never required.
+
 ### From mockups to the built app
 
 - **Bar and numbers.** The open question in wireframe 02 was settled by keeping both: the
@@ -237,6 +385,7 @@ on each one explain the design decisions.
 | School | `#198754` |
 | Other (explained) | `#0AA2C0` |
 | Gap (months unrecorded) | `#FFD966` |
+| Overlap (months at two addresses) | `#F8D7DA` |
 
 All colors are CSS variables in `frontend/src/index.css`.
 
@@ -248,6 +397,8 @@ All colors are CSS variables in `frontend/src/index.css`.
 - Touch targets are at least 44 px. The layout works at 390 px wide.
 - Every timeline segment is a button with a full `aria-label`. The gap list below the
   timeline offers the same actions with larger targets.
+- In the address form each error is tied to its field with `aria-describedby`. Edit and Delete
+  name their address in an `aria-label`.
 
 ## 8. Security and privacy
 
@@ -256,8 +407,8 @@ All colors are CSS variables in `frontend/src/index.css`.
   production.
 - `userId` always comes from the session (`req.user._id`), never from the request body.
   Validation drops any `userId` the browser sends.
-- Every activity query filters by `userId`. Editing or deleting someone else's record returns
-  404.
+- Every activity query and every address query filters by `userId`. Editing or deleting someone
+  else's record returns 404.
 - Credentials live in `backend/.env`, which is not committed.
 
 ## 9. Testing and seed data
@@ -267,15 +418,19 @@ All colors are CSS variables in `frontend/src/index.css`.
   the seed.
 - `npm run seed` creates 4 demo accounts, 200 synthetic users and more than 1,000 activities.
   It can be run again without duplicating data.
+- The 31 address tests cover the 5-year check and the rules of one address. They include the
+  move month and gaps at both ends of the range. They also cover overlaps and each field rule.
+- The address seed gives each synthetic user 5 to 8 addresses. That is more than 1,000 in total.
+  Some histories have gaps and overlaps on purpose.
 
 Demo accounts (password `nogaps-demo`):
 
-| Account | Shows |
-| --- | --- |
-| `demo.gaps` | Two 3-month gaps and 18 explained months |
-| `demo.complete` | No gaps; school and a part-time job overlap |
-| `demo.explained` | A break covered by an explained period |
-| `demo.empty` | An empty history |
+| Account | Jobs & Schools | Addresses |
+| --- | --- | --- |
+| `demo.gaps` | Two 3-month gaps and 18 explained months | A 3-month gap and a 2-month overlap |
+| `demo.complete` | No gaps; school and a part-time job overlap | No gaps and no overlaps |
+| `demo.explained` | A break covered by an explained period | No gaps and a 3-month overlap |
+| `demo.empty` | An empty history | An empty history |
 
 ## 10. Tech stack
 

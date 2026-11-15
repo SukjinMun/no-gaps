@@ -38,6 +38,7 @@ The app organizes what you enter; it doesn't verify it.
 
 - Deployed app: [DEPLOYED URL]
 - Video: [VIDEO URL]
+- Design document: [docs/DESIGN.md](docs/DESIGN.md)
 - Slides: [Google Slides](https://docs.google.com/presentation/d/1r8hK2WlgtJ56rmtv6cy-PEECMXk2hrNlZG-sYHmKLh0/edit?usp=sharing)
 
 Demo accounts (password `nogaps-demo`):
