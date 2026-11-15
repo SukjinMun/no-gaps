@@ -434,7 +434,8 @@ Demo accounts (password `nogaps-demo`):
 
 ## 10. Tech stack
 
-- Frontend: React 18 with hooks, React Router 6, Vite 5, `fetch`, PropTypes, custom CSS.
+- Frontend: React 18 with hooks, React Router 6, Vite 5, `fetch`, PropTypes, custom CSS. The
+  address pages use React Bootstrap 2 with Bootstrap 5 for their buttons and form controls.
 - Backend: Node.js 20.6+, Express 4, native MongoDB driver 6.
 - Login: Passport (passport-local), express-session, connect-mongo, bcrypt.
 - Tooling: ESLint and Prettier.

@@ -52,7 +52,8 @@ Demo accounts (password `nogaps-demo`):
 
 ## Tech stack
 
-- Frontend: React 18 with hooks, React Router and Vite, using `fetch`.
+- Frontend: React 18 with hooks, React Router and Vite, using `fetch`. The address pages use
+  React Bootstrap components.
 - Backend: Node.js and Express (ES modules) with the native MongoDB driver.
 - Login: Passport (passport-local) with express-session; sessions are stored in MongoDB and
   passwords are hashed with bcrypt.
