@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import passport from "./auth/passport.js";
 import authRouter from "./routes/auth.js";
 import activitiesRouter from "./routes/activities.js";
+import addressesRouter from "./routes/Addresses.js";
 import registerRouter from "./routes/register.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -40,6 +41,7 @@ export function createApp() {
   app.use("/api", authRouter);
   app.use("/api/register", registerRouter);
   app.use("/api/activities", activitiesRouter);
+  app.use("/api/addresses", addressesRouter);
   app.use("/api", (req, res) => res.status(404).json({ error: "Not found." }));
 
   // In production, Express also serves the built React app.

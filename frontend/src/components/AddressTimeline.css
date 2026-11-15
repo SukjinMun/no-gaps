@@ -1,0 +1,88 @@
+.address-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.address-timeline-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px 16px;
+}
+
+.address-timeline-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.address-timeline-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.address-timeline-hint {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.address-timeline-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 288px;
+  font-weight: 600;
+}
+
+.address-timeline-filter input {
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  min-height: 44px;
+  width: 100%;
+  font-weight: 400;
+}
+
+.address-timeline-message {
+  margin: 0;
+}
+
+.address-timeline-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.address-timeline-gap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 12px 20px;
+  background: var(--gap-bg);
+  border: 2px dashed var(--gap-border);
+  border-radius: var(--radius);
+  color: var(--gap-text);
+}
+
+.address-timeline-gap-link {
+  color: var(--gap-text);
+  font-weight: 600;
+}
+
+.address-timeline-gap-link:hover {
+  color: var(--gap-text);
+}
+
+@media (max-width: 600px) {
+  .address-timeline-filter {
+    max-width: none;
+  }
+}

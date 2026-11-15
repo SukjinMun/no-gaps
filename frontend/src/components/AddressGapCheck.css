@@ -1,0 +1,124 @@
+.address-gap-check {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.address-gap-check-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.address-gap-check-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.address-gap-check-range {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.address-gap-check-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.address-gap-check-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.address-gap-check-figure strong {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.address-gap-check-figure small {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.address-gap-check-figure-gaps strong {
+  color: var(--gap-text);
+}
+
+.address-gap-check-figure-overlaps strong {
+  color: var(--danger);
+}
+
+.address-gap-check-progress {
+  width: 100%;
+  height: 16px;
+  accent-color: var(--covered);
+}
+
+.address-gap-check-clear {
+  margin: 0;
+}
+
+.address-gap-check-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.address-gap-check-gap,
+.address-gap-check-overlap {
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.address-gap-check-gap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  background: var(--gap-bg);
+  border: 1px solid var(--gap-border);
+  color: var(--gap-text);
+}
+
+.address-gap-check-overlap {
+  background: var(--danger-bg);
+  border: 1px solid #f1aeb5;
+  color: #58151c;
+}
+
+.address-gap-check-streets {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.address-gap-check-fill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid #c9a227;
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--gap-text);
+  text-decoration: none;
+}
+
+.address-gap-check-fill:hover {
+  color: var(--gap-text);
+}

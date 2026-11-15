@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch --env-file=.env server.js",
-    "seed": "node --env-file=.env seed/seedUsers.js && node --env-file=.env seed/seedActivities.js",
+    "seed": "node --env-file=.env seed/seedUsers.js && node --env-file=.env seed/seedActivities.js && node --env-file=.env seed/seedAddresses.js",
     "test": "node --test",
     "lint": "eslint .",
     "format": "prettier --write . --ignore-path ../.prettierignore"

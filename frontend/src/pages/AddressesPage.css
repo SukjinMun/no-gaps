@@ -1,0 +1,77 @@
+.addresses-page {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.addresses-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.addresses-page-title {
+  margin: 0 0 6px;
+  font-size: 32px;
+}
+
+.addresses-page-lead {
+  margin: 0;
+  color: var(--muted);
+  max-width: 620px;
+}
+
+.addresses-page-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.addresses-page-add:hover {
+  color: #ffffff;
+}
+
+.addresses-page-status {
+  margin: 0;
+  color: var(--muted);
+}
+
+.addresses-page-alert {
+  margin: 0;
+  background: var(--danger-bg);
+  color: #58151c;
+  border: 1px solid #f1aeb5;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.addresses-page-help {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+}
+
+.addresses-page-help summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.addresses-page-help ol {
+  margin: 12px 0 4px;
+  padding-left: 20px;
+  color: var(--muted);
+}

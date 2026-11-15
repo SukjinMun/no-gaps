@@ -1,0 +1,42 @@
+.address-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.address-field-label {
+  font-weight: 600;
+}
+
+.address-field-optional {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.address-field input,
+.address-field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+}
+
+.address-field textarea {
+  resize: vertical;
+}
+
+.address-field input:disabled {
+  background: #e9ecef;
+}
+
+.address-field [aria-invalid="true"] {
+  border: 2px solid var(--danger);
+}
+
+.address-field-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 600;
+}
