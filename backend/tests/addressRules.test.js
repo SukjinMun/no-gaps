@@ -26,9 +26,7 @@ test("a valid past address has no errors", () => {
 });
 
 test("a current address has endMonth null", () => {
-  const { address, errors } = readAddress(
-    body({ current: true, endMonth: "" }),
-  );
+  const { address, errors } = readAddress(body({ current: true, endMonth: "" }));
   assert.equal(address.current, true);
   assert.equal(address.endMonth, null);
   assert.deepEqual(errors, {});
@@ -75,12 +73,9 @@ test("an address that is not current needs an end month", () => {
 });
 
 test("the landlord email must look like an email", () => {
-  assert.deepEqual(
-    readAddress(body({ landlordEmail: "dana@example" })).errors,
-    {
-      landlordEmail: "Enter a valid email address.",
-    },
-  );
+  assert.deepEqual(readAddress(body({ landlordEmail: "dana@example" })).errors, {
+    landlordEmail: "Enter a valid email address.",
+  });
   assert.deepEqual(readAddress(body({ landlordEmail: "" })).errors, {});
 });
 
@@ -96,17 +91,13 @@ test("text fields allow 200 characters and notes 1000", () => {
 });
 
 test("text values are trimmed", () => {
-  const { address } = readAddress(
-    body({ street: "  1420 Alder St  ", startMonth: " 2023-06 " }),
-  );
+  const { address } = readAddress(body({ street: "  1420 Alder St  ", startMonth: " 2023-06 " }));
   assert.equal(address.street, "1420 Alder St");
   assert.equal(address.startMonth, "2023-06");
 });
 
 test("non-string values become empty strings", () => {
-  const { address, errors } = readAddress(
-    body({ street: 42, unit: ["3"], current: "true" }),
-  );
+  const { address, errors } = readAddress(body({ street: 42, unit: ["3"], current: "true" }));
   assert.equal(address.street, "");
   assert.equal(address.unit, "");
   assert.equal(address.current, false);

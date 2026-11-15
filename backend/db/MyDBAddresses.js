@@ -1,9 +1,9 @@
 import { ObjectId } from "mongodb";
-import { getDatabase } from "./connection.js";
+import { getDB } from "./connection.js";
 
 function MyDBAddresses() {
   const me = {};
-  const addresses = () => getDatabase().collection("addresses");
+  const addresses = () => getDB().collection("addresses");
 
   me.getAddresses = (userId, query = {}) =>
     addresses()
@@ -11,8 +11,7 @@ function MyDBAddresses() {
       .sort({ startMonth: -1, _id: -1 })
       .toArray();
 
-  me.getAddress = (userId, id) =>
-    addresses().findOne({ _id: new ObjectId(id), userId });
+  me.getAddress = (userId, id) => addresses().findOne({ _id: new ObjectId(id), userId });
 
   me.createAddress = async (userId, address) => {
     const now = new Date();
@@ -28,8 +27,7 @@ function MyDBAddresses() {
       { returnDocument: "after" },
     );
 
-  me.deleteAddress = (userId, id) =>
-    addresses().deleteOne({ _id: new ObjectId(id), userId });
+  me.deleteAddress = (userId, id) => addresses().deleteOne({ _id: new ObjectId(id), userId });
 
   return me;
 }

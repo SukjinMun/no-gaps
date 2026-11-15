@@ -1,4 +1,4 @@
-import { connectToDatabase, closeDatabase } from "../db/connection.js";
+import { connectDB, closeDB } from "../db/connection.js";
 import { toIndex, toMonth, currentMonth } from "../utils/addressCheck.js";
 
 const STREETS = [
@@ -90,12 +90,15 @@ const LAST_NAMES = [
   "Lee",
   "Walker",
 ];
-// Demo moves, newest first: shared month, 3-month gap, shared, 2-month overlap, shared
-const DEMO_STAYS = [12, 11, 13, 10, 14, 12];
-const DEMO_MOVES = [0, -4, 0, 1, 0];
+// Moves between stays, newest first: 0 is a shared move month, -4 a 3-month gap, 1 a 2-month overlap
+const DEMO_HISTORIES = {
+  "demo.gaps": { stays: [12, 11, 13, 10, 14, 12], moves: [0, -4, 0, 1, 0] },
+  "demo.complete": { stays: [20, 18, 16, 14], moves: [0, 0, 0] },
+  "demo.explained": { stays: [26, 22, 20], moves: [2, 0] },
+  "demo.empty": { stays: [], moves: [] },
+};
 
-const randomInt = (min, max) =>
-  min + Math.floor(Math.random() * (max - min + 1));
+const randomInt = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
 
 const pick = (items) => items[randomInt(0, items.length - 1)];
 
@@ -145,10 +148,7 @@ const toAddress = (userId, { start, end }, now, date) => {
     current: end === now,
     landlordName: `${firstName} ${lastName}`,
     landlordPhone: `(${areaCode}) 555-01${String(randomInt(0, 99)).padStart(2, "0")}`,
-    landlordEmail:
-      Math.random() < 0.5
-        ? ""
-        : `${firstName}.${lastName}@example.com`.toLowerCase(),
+    landlordEmail: Math.random() < 0.5 ? "" : `${firstName}.${lastName}@example.com`.toLowerCase(),
     notes: "",
     seeded: true,
     createdAt: date,
@@ -158,14 +158,14 @@ const toAddress = (userId, { start, end }, now, date) => {
 
 async function seed() {
   try {
-    const db = await connectToDatabase();
+    const db = await connectDB();
     const users = await db
       .collection("users")
-      .find({}, { projection: { username: 1 } })
+      .find({ seed: true }, { projection: { username: 1 } })
       .toArray();
 
     if (users.length === 0) {
-      console.error("No users found. Run the users seed first.");
+      console.error("No seeded users found. Run seed/seedUsers.js first.");
       process.exitCode = 1;
       return;
     }
@@ -179,9 +179,8 @@ async function seed() {
     const now = toIndex(currentMonth());
     const date = new Date();
     const docs = users.flatMap(({ _id, username }) => {
-      const spans = username.startsWith("demo")
-        ? toSpans(now, DEMO_STAYS, DEMO_MOVES)
-        : randomHistory(now);
+      const demo = DEMO_HISTORIES[username];
+      const spans = demo ? toSpans(now, demo.stays, demo.moves) : randomHistory(now);
       return spans.map((span) => toAddress(_id, span, now, date));
     });
 
@@ -195,7 +194,7 @@ async function seed() {
     console.error("Seed error:", error.message);
     process.exitCode = 1;
   } finally {
-    await closeDatabase();
+    await closeDB();
   }
 }
 

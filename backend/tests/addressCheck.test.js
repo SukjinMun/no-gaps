@@ -1,11 +1,6 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
-import {
-  checkAddresses,
-  currentMonth,
-  toIndex,
-  toMonth,
-} from "../utils/addressCheck.js";
+import { checkAddresses, currentMonth, toIndex, toMonth } from "../utils/addressCheck.js";
 
 const now = new Date("2026-11-15T12:00:00Z");
 
@@ -19,8 +14,7 @@ const place = (id, startMonth, endMonth = null) => ({
 
 const short = (id) => ({ _id: id, street: `${id} Street` });
 
-const check = (addresses, options = {}) =>
-  checkAddresses(addresses, { now, ...options });
+const check = (addresses, options = {}) => checkAddresses(addresses, { now, ...options });
 
 describe("month helpers", () => {
   test("toIndex counts months from year 0", () => {
@@ -36,14 +30,8 @@ describe("month helpers", () => {
 
   test("currentMonth uses UTC", () => {
     assert.equal(currentMonth(now), "2026-11");
-    assert.equal(
-      currentMonth(new Date("2026-11-30T23:30:00-05:00")),
-      "2026-12",
-    );
-    assert.equal(
-      currentMonth(new Date("2026-12-01T02:00:00+05:00")),
-      "2026-11",
-    );
+    assert.equal(currentMonth(new Date("2026-11-30T23:30:00-05:00")), "2026-12");
+    assert.equal(currentMonth(new Date("2026-12-01T02:00:00+05:00")), "2026-11");
   });
 });
 
@@ -70,37 +58,25 @@ describe("checkAddresses", () => {
   });
 
   test("months between two addresses are a gap", () => {
-    const result = check([
-      place("a", "2020-01", "2023-05"),
-      place("b", "2023-09"),
-    ]);
-    assert.deepEqual(result.gaps, [
-      { from: "2023-06", to: "2023-08", months: 3 },
-    ]);
+    const result = check([place("a", "2020-01", "2023-05"), place("b", "2023-09")]);
+    assert.deepEqual(result.gaps, [{ from: "2023-06", to: "2023-08", months: 3 }]);
     assert.equal(result.coveredMonths, 57);
   });
 
   test("months before the first address are a gap at the start", () => {
     const result = check([place("a", "2022-03")]);
-    assert.deepEqual(result.gaps, [
-      { from: "2021-12", to: "2022-02", months: 3 },
-    ]);
+    assert.deepEqual(result.gaps, [{ from: "2021-12", to: "2022-02", months: 3 }]);
     assert.equal(result.coveredMonths, 57);
   });
 
   test("months after the last ended address are a gap at the end", () => {
     const result = check([place("a", "2020-01", "2026-08")]);
-    assert.deepEqual(result.gaps, [
-      { from: "2026-09", to: "2026-11", months: 3 },
-    ]);
+    assert.deepEqual(result.gaps, [{ from: "2026-09", to: "2026-11", months: 3 }]);
     assert.equal(result.coveredMonths, 57);
   });
 
   test("the shared move month is not an overlap", () => {
-    const result = check([
-      place("a", "2020-01", "2024-03"),
-      place("b", "2024-03"),
-    ]);
+    const result = check([place("a", "2020-01", "2024-03"), place("b", "2024-03")]);
     assert.deepEqual(result.overlaps, []);
     assert.equal(result.overlapMonths, 0);
     assert.deepEqual(result.gaps, []);
@@ -108,10 +84,7 @@ describe("checkAddresses", () => {
   });
 
   test("an overlap runs from the later start to the earlier end", () => {
-    const result = check([
-      place("b", "2024-03"),
-      place("a", "2020-01", "2024-04"),
-    ]);
+    const result = check([place("b", "2024-03"), place("a", "2020-01", "2024-04")]);
     assert.deepEqual(result.overlaps, [
       {
         from: "2024-03",
@@ -124,10 +97,7 @@ describe("checkAddresses", () => {
   });
 
   test("an address inside another one overlaps for all its months", () => {
-    const result = check([
-      place("b", "2023-02", "2023-05"),
-      place("a", "2020-01"),
-    ]);
+    const result = check([place("b", "2023-02", "2023-05"), place("a", "2020-01")]);
     assert.deepEqual(result.overlaps, [
       {
         from: "2023-02",
@@ -150,25 +120,18 @@ describe("checkAddresses", () => {
       },
     ]);
     assert.equal(result.overlapMonths, 18);
-    assert.deepEqual(result.gaps, [
-      { from: "2021-12", to: "2021-12", months: 1 },
-    ]);
+    assert.deepEqual(result.gaps, [{ from: "2021-12", to: "2021-12", months: 1 }]);
     assert.equal(result.coveredMonths, 59);
   });
 
   test("an address before the range is ignored", () => {
     const result = check([place("a", "2015-01", "2019-12")]);
     assert.equal(result.coveredMonths, 0);
-    assert.deepEqual(result.gaps, [
-      { from: "2021-12", to: "2026-11", months: 60 },
-    ]);
+    assert.deepEqual(result.gaps, [{ from: "2021-12", to: "2026-11", months: 60 }]);
   });
 
   test("an overlap before the range is left out", () => {
-    const result = check([
-      place("a", "2015-01", "2018-06"),
-      place("b", "2018-01", "2019-12"),
-    ]);
+    const result = check([place("a", "2015-01", "2018-06"), place("b", "2018-01", "2019-12")]);
     assert.deepEqual(result.overlaps, []);
     assert.equal(result.overlapMonths, 0);
   });
@@ -176,17 +139,13 @@ describe("checkAddresses", () => {
   test("an address that starts before the range counts from the range start", () => {
     const result = check([place("a", "2019-05", "2023-02")]);
     assert.equal(result.coveredMonths, 15);
-    assert.deepEqual(result.gaps, [
-      { from: "2023-03", to: "2026-11", months: 45 },
-    ]);
+    assert.deepEqual(result.gaps, [{ from: "2023-03", to: "2026-11", months: 45 }]);
   });
 
   test("months after the current month are ignored", () => {
     const result = check([place("a", "2024-01", "2027-06")]);
     assert.equal(result.coveredMonths, 35);
-    assert.deepEqual(result.gaps, [
-      { from: "2021-12", to: "2023-12", months: 25 },
-    ]);
+    assert.deepEqual(result.gaps, [{ from: "2021-12", to: "2023-12", months: 25 }]);
   });
 
   test("gaps and overlaps are sorted newest first", () => {
@@ -240,8 +199,6 @@ describe("checkAddresses", () => {
     assert.equal(result.to, "2026-11");
     assert.equal(result.totalMonths, 120);
     assert.equal(result.coveredMonths, 107);
-    assert.deepEqual(result.gaps, [
-      { from: "2016-12", to: "2017-12", months: 13 },
-    ]);
+    assert.deepEqual(result.gaps, [{ from: "2016-12", to: "2017-12", months: 13 }]);
   });
 });

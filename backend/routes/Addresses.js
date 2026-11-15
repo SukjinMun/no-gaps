@@ -1,7 +1,7 @@
 import express from "express";
 import { ObjectId } from "mongodb";
 import { myDBAddresses } from "../db/MyDBAddresses.js";
-import { isAuthenticated } from "../middleware/auth.js";
+import { requireAuth } from "../middleware/requireAuth.js";
 import { checkAddresses } from "../utils/addressCheck.js";
 import { readAddress } from "../utils/addressRules.js";
 
@@ -14,7 +14,7 @@ const serverError = (res, error) => {
   res.status(500).json({ error: "Internal Server Error" });
 };
 
-router.use(isAuthenticated);
+router.use(requireAuth);
 
 router.param("id", (req, res, next, id) => {
   if (!ObjectId.isValid(id)) {
@@ -36,9 +36,7 @@ router.get("/", async (req, res) => {
 
   try {
     const all = await myDBAddresses.getAddresses(req.user._id);
-    const addresses = text
-      ? await myDBAddresses.getAddresses(req.user._id, query)
-      : all;
+    const addresses = text ? await myDBAddresses.getAddresses(req.user._id, query) : all;
     res.json({ addresses, check: checkAddresses(all), total: all.length });
   } catch (error) {
     serverError(res, error);
@@ -78,11 +76,7 @@ router.put("/:id", async (req, res) => {
   }
 
   try {
-    const updated = await myDBAddresses.updateAddress(
-      req.user._id,
-      req.params.id,
-      address,
-    );
+    const updated = await myDBAddresses.updateAddress(req.user._id, req.params.id, address);
     if (!updated) {
       return res.status(404).json(NOT_FOUND);
     }
@@ -94,10 +88,7 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const result = await myDBAddresses.deleteAddress(
-      req.user._id,
-      req.params.id,
-    );
+    const result = await myDBAddresses.deleteAddress(req.user._id, req.params.id);
     if (result.deletedCount === 0) {
       return res.status(404).json(NOT_FOUND);
     }

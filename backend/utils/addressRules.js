@@ -50,11 +50,7 @@ export function readAddress(body = {}) {
 
   if (!current && !MONTH_PATTERN.test(address.endMonth)) {
     errors.endMonth = "Choose the end month, or check that you live here now.";
-  } else if (
-    !current &&
-    !errors.startMonth &&
-    address.endMonth < address.startMonth
-  ) {
+  } else if (!current && !errors.startMonth && address.endMonth < address.startMonth) {
     errors.endMonth = "The end month can't be before the start month.";
   }
 

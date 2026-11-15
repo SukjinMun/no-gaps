@@ -10,10 +10,7 @@ export const toMonth = (index) =>
 
 export const currentMonth = (now = new Date()) => now.toISOString().slice(0, 7);
 
-export function checkAddresses(
-  addresses,
-  { years = 5, now = new Date() } = {},
-) {
+export function checkAddresses(addresses, { years = 5, now = new Date() } = {}) {
   const to = toIndex(currentMonth(now));
   const from = to - years * 12 + 1;
   const covered = new Array(years * 12).fill(false);
