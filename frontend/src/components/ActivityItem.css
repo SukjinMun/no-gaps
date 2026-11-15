@@ -1,0 +1,111 @@
+.activity-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.activity-item--highlighted {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px #86b7fe;
+}
+
+.activity-item__when {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.activity-item__badge {
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.activity-item__badge--work {
+  background: #e7f1ff;
+  color: #084298;
+}
+
+.activity-item__badge--school {
+  background: #d1e7dd;
+  color: #0a3622;
+}
+
+.activity-item__badge--other {
+  background: #cff4fc;
+  color: var(--explained);
+}
+
+.activity-item__body {
+  flex: 999 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.activity-item__title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.activity-item__muted {
+  color: var(--muted);
+}
+
+.activity-item__small {
+  color: var(--muted);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.activity-item__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.activity-item__confirm-text {
+  font-weight: 600;
+}
+
+.activity-item__button {
+  min-height: 44px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #adb5bd;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.activity-item__button--primary {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+.activity-item__button--danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.activity-item__button--danger-solid {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: #ffffff;
+}
+
+.activity-item__button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}

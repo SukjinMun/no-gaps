@@ -1,0 +1,73 @@
+/* Shared colors and base styles for the whole app. */
+:root {
+  --text: #212529;
+  --muted: #495057;
+  --border: #dee2e6;
+  --input-border: #ced4da;
+  --page: #f8f9fa;
+  --surface: #ffffff;
+  --primary: #0b5ed7;
+  --primary-dark: #084298;
+  --link: #0a58ca;
+  --danger: #b02a37;
+  --danger-bg: #f8d7da;
+  --gap-text: #664d03;
+  --gap-bg: #fff3cd;
+  --gap-border: #e0c46b;
+  --covered: #198754;
+  --explained: #055160;
+  --work: #0b5ed7;
+  --school: #198754;
+  --other: #0aa2c0;
+  --gap-fill: #ffd966;
+  --radius: 8px;
+  --bar-bg: #1e293b;
+  --bar-text: #ffffff;
+  --bar-muted: #cbd5e1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  color: var(--text);
+  background: var(--page);
+  line-height: 1.5;
+}
+
+/* Keeps the footer at the bottom of short pages. */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--link);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid #86b7fe;
+  outline-offset: 2px;
+}

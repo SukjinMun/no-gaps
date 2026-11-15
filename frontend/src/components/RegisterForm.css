@@ -1,0 +1,100 @@
+.register {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 56px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register__intro h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+.register__intro p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.register__card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.register__alert {
+  margin: 0;
+  background: var(--danger-bg);
+  color: #58151c;
+  border: 1px solid #f1aeb5;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.register__notice {
+  margin: 0;
+  background: #d1e7dd;
+  color: #0a3622;
+  border: 1px solid #a3cfbb;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.register__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.register__field label {
+  font-weight: 600;
+}
+
+.register__field input {
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  min-height: 44px;
+}
+
+.register__field input[aria-invalid="true"] {
+  border: 2px solid var(--danger);
+}
+
+.register__hint {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.register__error {
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.register__submit {
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.register__login {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.register__submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}

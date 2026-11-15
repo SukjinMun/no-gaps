@@ -1,24 +1,30 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
+let client;
+let db;
 
-if (!uri) {
-  throw new Error("MONGODB_URI is not defined");
-}
-
-const client = new MongoClient(uri);
-let database;
-
-export async function connectToDatabase() {
+// Connects once and reuses the same connection everywhere.
+export async function connectDB(
+  uri = process.env.MONGO_URI,
+  dbName = process.env.DB_NAME || "nogaps",
+) {
+  if (db) return db;
+  if (!uri) {
+    throw new Error("MONGO_URI is not set. Copy .env.example to .env and fill it in.");
+  }
+  client = new MongoClient(uri);
   await client.connect();
-  database = client.db("noGaps");
-  return database;
+  db = client.db(dbName);
+  return db;
 }
 
-export function getDatabase() {
-  return database;
+export function getDB() {
+  if (!db) throw new Error("Call connectDB() before using the database.");
+  return db;
 }
 
-export async function closeDatabase() {
-  await client.close();
+export async function closeDB() {
+  await client?.close();
+  client = undefined;
+  db = undefined;
 }
