@@ -5,6 +5,8 @@ each with a check that flags the months you haven't recorded.
 
 ![Jobs & Schools page showing the 10-year timeline, the gap check and the list](docs/screenshot.gif)
 
+![Addresses page showing the 5-year gap check and the timeline](docs/addresses.png)
+
 ## Authors
 
 - **Alejandra Aimee Rivas Montes**: Jobs & Schools timeline (activities collection, page, routes,
@@ -23,6 +25,8 @@ unexplained gaps. No Gaps keeps both histories in one private place, so you neve
 rebuild them from old emails and leases again.
 
 - Each user logs in and sees only their own entries.
+- **Addresses** checks the last 5 years. Unrecorded months are listed as gaps and months with two
+  addresses are listed as overlaps. A move inside one month is not an overlap.
 - **Jobs & Schools** checks the last 10 years. Each month is covered (job or school),
   explained (an "other activity" such as caregiving or travel) or unrecorded. Unrecorded months
   are listed as gaps, and one click starts an entry that fills them.
@@ -38,12 +42,12 @@ The app organizes what you enter; it doesn't verify it.
 
 Demo accounts (password `nogaps-demo`):
 
-| Account | What it shows |
-| --- | --- |
-| `demo.gaps` | Two 3-month gaps and an 18-month explained period |
-| `demo.complete` | No gaps; school and a part-time job overlap |
-| `demo.explained` | A break covered by an explained period |
-| `demo.empty` | An empty history |
+| Account | Jobs & Schools | Addresses |
+| --- | --- | --- |
+| `demo.gaps` | Two 3-month gaps and an 18-month explained period | A 3-month gap and a 2-month overlap |
+| `demo.complete` | No gaps; school and a part-time job overlap | No gaps and no overlaps |
+| `demo.explained` | A break covered by an explained period | No gaps and a 3-month overlap |
+| `demo.empty` | An empty history | An empty history |
 
 ## Tech stack
 
@@ -63,7 +67,7 @@ Requirements: Node.js 20.6 or newer and a MongoDB database (local or
 cd backend
 npm install
 cp .env.example .env   # then set MONGO_URI and SESSION_SECRET
-npm run seed           # demo accounts, 200 synthetic users, 1,200+ activities
+npm run seed           # demo accounts, 200 synthetic users, 1,200+ activities, 1,000+ addresses
 npm run dev            # API on http://localhost:3000
 
 # 2. Frontend (second terminal)
@@ -98,7 +102,8 @@ frontend/src/
 
 ## API
 
-All `/api/activities` routes need a logged-in session and only touch that user's entries.
+All `/api/activities` and `/api/addresses` routes need a logged-in session and only touch that
+user's entries.
 
 | Method | Route | Does |
 | --- | --- | --- |
@@ -111,6 +116,11 @@ All `/api/activities` routes need a logged-in session and only touch that user's
 | POST | `/api/activities` | Add one |
 | PUT | `/api/activities/:id` | Edit one of mine |
 | DELETE | `/api/activities/:id` | Delete one of mine |
+| GET | `/api/addresses?q=` | List my addresses with the 5-year check of gaps and overlaps. `q` filters the list by street, city or landlord |
+| GET | `/api/addresses/:id` | Read one of mine |
+| POST | `/api/addresses` | Add one |
+| PUT | `/api/addresses/:id` | Edit one of mine |
+| DELETE | `/api/addresses/:id` | Delete one of mine |
 
 ## License
 
