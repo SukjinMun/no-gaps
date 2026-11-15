@@ -1,5 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import AddressField from "./AddressField.jsx";
 import "./AddressForm.css";
@@ -25,12 +28,12 @@ export default function AddressForm({ initialAddress, errors, submitLabel, onSav
   };
 
   return (
-    <form noValidate onSubmit={onSubmit} className="address-form">
+    <Form noValidate onSubmit={onSubmit} className="address-form">
       {errorCount > 0 && (
-        <p role="alert" className="address-form-alert">
+        <Alert variant="danger" className="address-form-alert">
           {errors.form ??
             `Please fix ${errorCount} ${errorCount === 1 ? "field" : "fields"} before saving.`}
-        </p>
+        </Alert>
       )}
 
       <div className="address-form-row address-form-row-street">
@@ -166,14 +169,19 @@ export default function AddressForm({ initialAddress, errors, submitLabel, onSav
       />
 
       <div className="address-form-actions">
-        <button type="submit" className="address-form-save" disabled={saving}>
+        <Button type="submit" className="address-form-save" disabled={saving}>
           {submitLabel}
-        </button>
-        <Link to="/addresses" className="address-form-cancel">
+        </Button>
+        <Button
+          as={Link}
+          variant="outline-secondary"
+          className="address-form-cancel"
+          to="/addresses"
+        >
           Cancel
-        </Link>
+        </Button>
       </div>
-    </form>
+    </Form>
   );
 }
 

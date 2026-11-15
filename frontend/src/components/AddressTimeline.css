@@ -1,3 +1,4 @@
+/* Section, header and filter */
 .address-timeline {
   display: flex;
   flex-direction: column;
@@ -34,18 +35,17 @@
   gap: 6px;
   width: 100%;
   max-width: 288px;
+  margin-bottom: 0;
   font-weight: 600;
 }
 
-.address-timeline-filter input {
-  border: 1px solid var(--input-border);
-  border-radius: 6px;
-  padding: 10px 12px;
+.address-timeline-filter .form-control {
   min-height: 44px;
-  width: 100%;
-  font-weight: 400;
+  padding: 10px 12px;
+  border-color: var(--input-border);
 }
 
+/* List and gap row */
 .address-timeline-message {
   margin: 0;
 }

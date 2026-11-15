@@ -1,3 +1,4 @@
+/* Form and rows */
 .address-form {
   display: flex;
   flex-direction: column;
@@ -5,12 +6,9 @@
 }
 
 .address-form-alert {
-  margin: 0;
-  padding: 10px 14px;
-  border: 1px solid #f1aeb5;
-  border-radius: 6px;
-  background: var(--danger-bg);
-  color: #58151c;
+  --bs-alert-padding-x: 14px;
+  --bs-alert-padding-y: 10px;
+  --bs-alert-margin-bottom: 0;
   font-size: 14px;
 }
 
@@ -30,6 +28,7 @@
   }
 }
 
+/* Checkbox, hint and landlord */
 .address-form-choice {
   display: flex;
   align-items: center;
@@ -61,41 +60,32 @@
   color: var(--muted);
 }
 
+/* Actions */
 .address-form-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
+/* The Bootstrap buttons take the shared colors */
 .address-form-save,
 .address-form-cancel {
+  --bs-btn-padding-x: 20px;
+  --bs-btn-padding-y: 10px;
   min-height: 44px;
-  padding: 10px 20px;
-  border-radius: 6px;
 }
 
 .address-form-save {
-  border: 0;
-  background: var(--primary);
-  color: #ffffff;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.address-form-save:disabled {
-  opacity: 0.65;
-  cursor: wait;
+  --bs-btn-border-width: 0;
+  --bs-btn-font-weight: 600;
+  --bs-btn-bg: var(--primary);
+  --bs-btn-hover-bg: var(--primary-dark);
+  --bs-btn-active-bg: var(--primary-dark);
+  --bs-btn-disabled-bg: var(--primary);
 }
 
 .address-form-cancel {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid #adb5bd;
-  background: var(--surface);
-  text-decoration: none;
-}
-
-.address-form-cancel,
-.address-form-cancel:hover {
-  color: var(--muted);
+  --bs-btn-color: var(--muted);
+  --bs-btn-bg: var(--surface);
+  --bs-btn-border-color: #adb5bd;
 }

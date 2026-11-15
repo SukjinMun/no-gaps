@@ -1,3 +1,4 @@
+/* Card */
 .address-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -17,6 +18,7 @@
   gap: 6px;
 }
 
+/* Badges */
 .address-card-badges {
   display: flex;
   flex-wrap: wrap;
@@ -24,10 +26,10 @@
 }
 
 .address-card-badge {
-  border-radius: 999px;
   padding: 2px 10px;
   font-size: 13px;
   font-weight: 600;
+  line-height: 1.5;
 }
 
 .address-card-badge-current {
@@ -40,6 +42,7 @@
   color: #58151c;
 }
 
+/* Details */
 .address-card-details {
   flex: 999 1 320px;
   min-width: 0;
@@ -66,6 +69,7 @@
   font-size: 14px;
 }
 
+/* Actions */
 .address-card-actions {
   display: flex;
   flex-wrap: wrap;
@@ -77,33 +81,42 @@
   font-weight: 600;
 }
 
-.address-card-button,
-.address-card-edit {
+/* The Bootstrap buttons take the shared colors */
+.address-card-button {
+  --bs-btn-padding-x: 14px;
+  --bs-btn-padding-y: 6px;
+  --bs-btn-color: var(--muted);
+  --bs-btn-bg: var(--surface);
+  --bs-btn-border-color: #adb5bd;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   min-height: 44px;
-  padding: 6px 14px;
-  border-radius: 6px;
-  border: 1px solid #adb5bd;
-  background: var(--surface);
-  color: var(--muted);
-  cursor: pointer;
 }
 
-.address-card-edit {
-  border-color: var(--link);
-  color: var(--link);
-  text-decoration: none;
+.address-card-button-edit {
+  --bs-btn-color: var(--link);
+  --bs-btn-border-color: var(--link);
+  --bs-btn-hover-bg: var(--link);
+  --bs-btn-hover-border-color: var(--link);
+  --bs-btn-active-bg: var(--link);
+  --bs-btn-active-border-color: var(--link);
 }
 
 .address-card-button-danger {
-  border-color: var(--danger);
-  color: var(--danger);
+  --bs-btn-color: var(--danger);
+  --bs-btn-border-color: var(--danger);
+  --bs-btn-hover-bg: var(--danger);
+  --bs-btn-hover-border-color: var(--danger);
+  --bs-btn-active-bg: var(--danger);
+  --bs-btn-active-border-color: var(--danger);
 }
 
 .address-card-button-danger-solid {
-  border-color: var(--danger);
-  background: var(--danger);
-  color: #ffffff;
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: var(--danger);
+  --bs-btn-border-color: var(--danger);
+  --bs-btn-hover-bg: var(--danger);
+  --bs-btn-hover-border-color: var(--danger);
+  --bs-btn-active-bg: var(--danger);
+  --bs-btn-active-border-color: var(--danger);
 }

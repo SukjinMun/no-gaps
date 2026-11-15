@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Alert from "react-bootstrap/Alert";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import AddressForm from "../components/AddressForm.jsx";
 import "./AddressFormPage.css";
@@ -107,14 +108,18 @@ export default function AddressFormPage() {
       {status === "loading" && <p role="status">Loading address...</p>}
       {status === "login" && (
         <p>
-          Please <a href="/login">log in</a> to add or edit an address.
+          Please{" "}
+          <Link to="/login" reloadDocument>
+            log in
+          </Link>{" "}
+          to add or edit an address.
         </p>
       )}
       {status === "missing" && <p>Address not found.</p>}
       {status === "error" && (
-        <p role="alert" className="address-form-page-alert">
+        <Alert variant="danger" className="address-form-page-alert">
           The address could not be loaded. Try again.
-        </p>
+        </Alert>
       )}
       {status === "ready" && (
         <div className="address-form-page-card">

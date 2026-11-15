@@ -1,5 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Badge from "react-bootstrap/Badge";
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { formatRange } from "../utils/addressMonths.js";
 import "./AddressCard.css";
@@ -25,10 +27,14 @@ export default function AddressCard({ address, overlapping, onDelete }) {
         </strong>
         <div className="address-card-badges">
           {address.current && (
-            <span className="address-card-badge address-card-badge-current">Current</span>
+            <Badge pill bg="" className="address-card-badge address-card-badge-current">
+              Current
+            </Badge>
           )}
           {overlapping && (
-            <span className="address-card-badge address-card-badge-overlap">Overlap</span>
+            <Badge pill bg="" className="address-card-badge address-card-badge-overlap">
+              Overlap
+            </Badge>
           )}
         </div>
       </div>
@@ -48,38 +54,40 @@ export default function AddressCard({ address, overlapping, onDelete }) {
         {confirming ? (
           <>
             <span className="address-card-confirm">Delete this address?</span>
-            <button
-              type="button"
+            <Button
+              variant="danger"
               className="address-card-button address-card-button-danger-solid"
               onClick={() => onDelete(address._id)}
             >
               Yes, delete
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
+              variant="outline-secondary"
               className="address-card-button"
               onClick={() => setConfirming(false)}
             >
               Cancel
-            </button>
+            </Button>
           </>
         ) : (
           <>
-            <Link
-              className="address-card-edit"
+            <Button
+              as={Link}
+              variant="outline-primary"
+              className="address-card-button address-card-button-edit"
               to={`/addresses/${encodeURIComponent(address._id)}/edit`}
               aria-label={`Edit ${address.street}`}
             >
               Edit
-            </Link>
-            <button
-              type="button"
+            </Button>
+            <Button
+              variant="outline-danger"
               className="address-card-button address-card-button-danger"
               aria-label={`Delete ${address.street}`}
               onClick={() => setConfirming(true)}
             >
               Delete
-            </button>
+            </Button>
           </>
         )}
       </div>

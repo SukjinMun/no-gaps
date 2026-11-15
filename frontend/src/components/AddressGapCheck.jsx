@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { formatRange, monthsLabel } from "../utils/addressMonths.js";
 import "./AddressGapCheck.css";
@@ -67,12 +68,14 @@ export default function AddressGapCheck({ check }) {
                 unrecorded
                 {gap.from === check.from && " (start of range)"}
               </span>
-              <Link
+              <Button
+                as={Link}
+                variant="outline-secondary"
                 className="address-gap-check-fill"
                 to={`/addresses/new?start=${encodeURIComponent(gap.from)}&end=${encodeURIComponent(gap.to)}`}
               >
                 Add address for these months
-              </Link>
+              </Button>
             </li>
           ))}
           {check.overlaps.map((overlap) => (
