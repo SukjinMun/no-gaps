@@ -1,9 +1,0 @@
-.navigation-bar .container {
-  max-width: 1040px;
-  padding: 0 1rem;
-}
-
-.navigation-bar .nav-link.active {
-  text-decoration: underline;
-  text-underline-offset: 0.4rem;
-}
