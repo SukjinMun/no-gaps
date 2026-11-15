@@ -1,0 +1,28 @@
+﻿.footer {
+  margin-top: auto;
+  background: var(--bar-bg);
+  color: var(--bar-muted);
+}
+
+.footer__inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 16px;
+  text-align: center;
+}
+
+.footer__line,
+.footer__credit {
+  margin: 0;
+}
+
+.footer__brand {
+  margin-right: 8px;
+  color: var(--bar-text);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.footer__credit {
+  font-size: 14px;
+}

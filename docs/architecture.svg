@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0a1f44"/></marker>
+    <marker id="arrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8a6d1f"/></marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#f6f8fc"/>
+
+  <!-- Title -->
+  <g transform="translate(40 34)">
+    <rect width="40" height="40" rx="9" fill="#0b5ed7"/>
+    <g stroke-linecap="round" stroke-width="5"><path d="M9 13H22" stroke="#fff"/><path d="M18 20.5H31" stroke="#fff" opacity=".7"/><path d="M9 28H31" stroke="#ffd966"/></g>
+    <text x="56" y="20" font-size="26" font-weight="700" fill="#0a1f44">No Gaps · Architecture</text>
+    <text x="56" y="42" font-size="16" fill="#3d4f6b">React SPA → Express API (Passport sessions) → MongoDB Atlas, deployed as one service on Render</text>
+  </g>
+
+  <!-- ===== Column 1: Browser ===== -->
+  <rect x="40" y="110" width="400" height="760" rx="18" fill="#ffffff" stroke="#dce4f2" stroke-width="2"/>
+  <text x="64" y="146" font-size="15" font-weight="700" fill="#0b5ed7" letter-spacing="1.5">BROWSER</text>
+  <text x="64" y="174" font-size="22" font-weight="700" fill="#0a1f44">React 18 SPA (Vite)</text>
+
+  <rect x="64" y="196" width="352" height="150" rx="12" fill="#eef3fb"/>
+  <text x="82" y="224" font-size="16" font-weight="700" fill="#0a1f44">App.jsx · React Router</text>
+  <text x="82" y="250" font-size="15" fill="#3d4f6b">Checks the session with GET /api/me</text>
+  <text x="82" y="272" font-size="15" fill="#3d4f6b">and sends visitors to /login.</text>
+  <text x="82" y="304" font-size="15" fill="#3d4f6b">/activities · /login · /register</text>
+  <text x="82" y="326" font-size="15" fill="#8a6d1f">/addresses (Suk)</text>
+
+  <rect x="64" y="362" width="352" height="232" rx="12" fill="#eef3fb"/>
+  <text x="82" y="390" font-size="16" font-weight="700" fill="#0a1f44">Components · own file, CSS, PropTypes</text>
+  <text x="82" y="420" font-size="15" fill="#3d4f6b">ActivitiesPage</text>
+  <text x="96" y="444" font-size="15" fill="#3d4f6b">├ GapSummary</text>
+  <text x="96" y="468" font-size="15" fill="#3d4f6b">├ ActivityForm</text>
+  <text x="96" y="492" font-size="15" fill="#3d4f6b">└ ActivityList → ActivityItem</text>
+  <text x="82" y="522" font-size="15" fill="#3d4f6b">NavBar · LoginForm · RegisterForm</text>
+  <text x="82" y="552" font-size="15" fill="#8a6d1f">AddressesPage (Suk)</text>
+  <text x="82" y="578" font-size="13" fill="#5b6b85">Hooks: useState, useEffect, useCallback, useRef</text>
+
+  <rect x="64" y="610" width="352" height="112" rx="12" fill="#0a1f44"/>
+  <text x="82" y="640" font-size="16" font-weight="700" fill="#f6f8fc">src/api/ · fetch (no axios)</text>
+  <text x="82" y="666" font-size="15" fill="#b6c6e3">client.js · activitiesApi.js · authApi.js</text>
+  <text x="82" y="692" font-size="15" fill="#b6c6e3">JSON + session cookie, same origin</text>
+  <text x="82" y="712" font-size="13" fill="#9ec5fe">(Vite proxies /api in development)</text>
+
+  <rect x="64" y="740" width="352" height="106" rx="12" fill="#fff8e1" stroke="#e0c46b"/>
+  <text x="82" y="768" font-size="15" font-weight="700" fill="#664d03">Users</text>
+  <text x="82" y="792" font-size="14" fill="#664d03">Log in, add jobs, schools and explained</text>
+  <text x="82" y="812" font-size="14" fill="#664d03">periods, and see which months of the</text>
+  <text x="82" y="832" font-size="14" fill="#664d03">last 10 years are missing.</text>
+
+  <!-- ===== Column 2: Server ===== -->
+  <rect x="520" y="110" width="660" height="760" rx="18" fill="#ffffff" stroke="#dce4f2" stroke-width="2"/>
+  <text x="544" y="146" font-size="15" font-weight="700" fill="#0b5ed7" letter-spacing="1.5">SERVER · RENDER</text>
+  <text x="544" y="174" font-size="22" font-weight="700" fill="#0a1f44">Node.js + Express 4 (ES modules)</text>
+
+  <!-- middleware -->
+  <rect x="544" y="196" width="612" height="104" rx="12" fill="#eef3fb"/>
+  <text x="562" y="222" font-size="16" font-weight="700" fill="#0a1f44">app.js · middleware, in order</text>
+  <g font-size="14" fill="#0a1f44">
+    <rect x="562" y="236" width="122" height="40" rx="8" fill="#ffffff" stroke="#c5d3ea"/><text x="580" y="261">express.json</text>
+    <rect x="694" y="236" width="196" height="40" rx="8" fill="#ffffff" stroke="#c5d3ea"/><text x="708" y="261">express-session</text>
+    <rect x="900" y="236" width="238" height="40" rx="8" fill="#ffffff" stroke="#c5d3ea"/><text x="914" y="261">Passport (local + bcrypt)</text>
+  </g>
+  <text x="850" y="292" font-size="12" fill="#5b6b85" text-anchor="middle">sessions saved in MongoDB (connect-mongo)</text>
+
+  <!-- routes -->
+  <text x="544" y="324" font-size="15" font-weight="700" fill="#3d4f6b">routes/</text>
+  <g font-size="14">
+    <rect x="544" y="336" width="140" height="66" rx="10" fill="#0b5ed7"/><text x="614" y="364" fill="#fff" text-anchor="middle" font-weight="700">/api/register</text><text x="614" y="386" fill="#d6e6ff" text-anchor="middle">POST</text>
+    <rect x="696" y="336" width="150" height="66" rx="10" fill="#0b5ed7"/><text x="771" y="364" fill="#fff" text-anchor="middle" font-weight="700">/api/login · logout</text><text x="771" y="386" fill="#d6e6ff" text-anchor="middle">/api/me</text>
+    <rect x="858" y="336" width="150" height="66" rx="10" fill="#0b5ed7"/><text x="933" y="364" fill="#fff" text-anchor="middle" font-weight="700">/api/activities</text><text x="933" y="386" fill="#d6e6ff" text-anchor="middle">CRUD + /gaps</text>
+    <rect x="1020" y="336" width="136" height="66" rx="10" fill="#fffaf0" stroke="#c9a227" stroke-dasharray="6 4"/><text x="1088" y="364" fill="#8a6d1f" text-anchor="middle" font-weight="700">/api/addresses</text><text x="1088" y="386" fill="#8a6d1f" text-anchor="middle">Suk</text>
+  </g>
+  <rect x="858" y="410" width="150" height="30" rx="8" fill="#fff3cd"/><text x="933" y="430" font-size="13" fill="#664d03" text-anchor="middle" font-weight="700">requireAuth → 401</text>
+
+  <!-- controllers & utils -->
+  <rect x="544" y="458" width="612" height="190" rx="12" fill="#eef3fb"/>
+  <text x="562" y="484" font-size="16" font-weight="700" fill="#0a1f44">controllers/ · auth/ · utils/  (pure, unit-tested)</text>
+  <g font-size="14" fill="#0a1f44">
+    <rect x="562" y="500" width="180" height="56" rx="8" fill="#fff" stroke="#c5d3ea"/><text x="574" y="524" font-weight="700">registerController</text><text x="574" y="544" fill="#3d4f6b">validate · hash</text>
+    <rect x="752" y="500" width="160" height="56" rx="8" fill="#fff" stroke="#c5d3ea"/><text x="764" y="524" font-weight="700">verifyUser</text><text x="764" y="544" fill="#3d4f6b">bcrypt.compare</text>
+    <rect x="922" y="500" width="216" height="56" rx="8" fill="#fff" stroke="#c5d3ea"/><text x="934" y="524" font-weight="700">activitiesController</text><text x="934" y="544" fill="#3d4f6b">list · create · update · remove</text>
+    <rect x="752" y="572" width="186" height="60" rx="8" fill="#fff" stroke="#c5d3ea"/><text x="764" y="596" font-weight="700">validateActivity</text><text x="764" y="617" fill="#3d4f6b">rules per type · no userId</text>
+    <rect x="948" y="572" width="190" height="60" rx="8" fill="#fff" stroke="#c5d3ea"/><text x="960" y="596" font-weight="700">activityGaps</text><text x="960" y="617" fill="#3d4f6b">10 years · month grid</text>
+  </g>
+  <path d="M1030 556 V572" stroke="#0a1f44" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M960 556 L870 572" stroke="#0a1f44" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="562" y="604" font-size="13" fill="#5b6b85">38 tests with node:test</text>
+  <text x="562" y="622" font-size="13" fill="#5b6b85">and in-memory fake stores</text>
+
+  <!-- db layer -->
+  <rect x="544" y="666" width="612" height="96" rx="12" fill="#0a1f44"/>
+  <text x="562" y="694" font-size="16" font-weight="700" fill="#f6f8fc">db/ · native MongoDB driver (no Mongoose)</text>
+  <text x="562" y="720" font-size="15" fill="#b6c6e3">connection.js · usersDB.js · activitiesDB.js · ids.js</text>
+  <text x="562" y="744" font-size="14" fill="#ffd966">Every activities query filters by userId from the session; others’ ids return 404</text>
+
+  <rect x="544" y="778" width="612" height="68" rx="12" fill="#ffffff" stroke="#c5d3ea" stroke-dasharray="6 4"/>
+  <text x="562" y="806" font-size="15" font-weight="700" fill="#0a1f44">express.static(frontend/dist)</text>
+  <text x="562" y="830" font-size="14" fill="#3d4f6b">In production Express also serves the built React app, so no CORS is needed.</text>
+
+  <!-- ===== Column 3: Data ===== -->
+  <rect x="1260" y="110" width="300" height="760" rx="18" fill="#ffffff" stroke="#dce4f2" stroke-width="2"/>
+  <text x="1284" y="146" font-size="15" font-weight="700" fill="#0b5ed7" letter-spacing="1.5">DATA</text>
+  <text x="1284" y="174" font-size="22" font-weight="700" fill="#0a1f44">MongoDB Atlas</text>
+  <text x="1284" y="198" font-size="14" fill="#3d4f6b">database: nogaps</text>
+
+  <g font-size="15">
+    <!-- cylinders -->
+    <g transform="translate(1284 220)">
+      <path d="M0 14 V64 A126 14 0 0 0 252 64 V14" fill="#eef3fb" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="126" cy="14" rx="126" ry="14" fill="#d6e6ff" stroke="#9ec5fe" stroke-width="2"/>
+      <text x="16" y="52" font-weight="700" fill="#0a1f44">users</text><text x="236" y="52" text-anchor="end" fill="#3d4f6b">204 seeded</text>
+    </g>
+    <g transform="translate(1284 320)">
+      <path d="M0 14 V64 A126 14 0 0 0 252 64 V14" fill="#eef3fb" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="126" cy="14" rx="126" ry="14" fill="#d6e6ff" stroke="#9ec5fe" stroke-width="2"/>
+      <text x="16" y="52" font-weight="700" fill="#0a1f44">activities</text><text x="236" y="52" text-anchor="end" fill="#3d4f6b">1,218 seeded</text>
+    </g>
+    <g transform="translate(1284 420)">
+      <path d="M0 14 V64 A126 14 0 0 0 252 64 V14" fill="#eef3fb" stroke="#9ec5fe" stroke-width="2"/><ellipse cx="126" cy="14" rx="126" ry="14" fill="#d6e6ff" stroke="#9ec5fe" stroke-width="2"/>
+      <text x="16" y="52" font-weight="700" fill="#0a1f44">sessions</text><text x="236" y="52" text-anchor="end" fill="#3d4f6b">logins</text>
+    </g>
+    <g transform="translate(1284 520)">
+      <path d="M0 14 V64 A126 14 0 0 0 252 64 V14" fill="#fffaf0" stroke="#c9a227" stroke-width="2" stroke-dasharray="6 4"/><ellipse cx="126" cy="14" rx="126" ry="14" fill="#fff3cd" stroke="#c9a227" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="16" y="52" font-weight="700" fill="#8a6d1f">addresses</text><text x="236" y="52" text-anchor="end" fill="#8a6d1f">Suk</text>
+    </g>
+  </g>
+
+  <rect x="1284" y="640" width="252" height="206" rx="12" fill="#eef3fb"/>
+  <text x="1300" y="668" font-size="16" font-weight="700" fill="#0a1f44">seed/ (npm run seed)</text>
+  <text x="1300" y="696" font-size="14" fill="#3d4f6b">1. seedUsers.js</text>
+  <text x="1316" y="716" font-size="13" fill="#5b6b85">4 demo + 200 synthetic users,</text>
+  <text x="1316" y="734" font-size="13" fill="#5b6b85">upsert keeps the same ids</text>
+  <text x="1300" y="762" font-size="14" fill="#3d4f6b">2. seedActivities.js</text>
+  <text x="1316" y="782" font-size="13" fill="#5b6b85">reproducible histories with</text>
+  <text x="1316" y="800" font-size="13" fill="#5b6b85">gaps, overlaps, explained</text>
+  <text x="1300" y="828" font-size="14" fill="#8a6d1f">3. addresses seed (Suk)</text>
+
+  <!-- ===== Arrows between columns ===== -->
+  <path d="M416 666 C470 666 470 370 538 370" fill="none" stroke="#0a1f44" stroke-width="2.5" marker-end="url(#arr)"/>
+  <rect x="446" y="500" width="72" height="44" rx="8" fill="#f6f8fc"/>
+  <text x="482" y="518" font-size="13" fill="#0a1f44" text-anchor="middle" font-weight="700">HTTPS</text>
+  <text x="482" y="536" font-size="12" fill="#3d4f6b" text-anchor="middle">JSON</text>
+
+  <path d="M1156 714 C1210 714 1210 360 1278 360" fill="none" stroke="#0a1f44" stroke-width="2.5" marker-end="url(#arr)"/>
+  <path d="M1156 700 C1200 700 1200 260 1278 260" fill="none" stroke="#0a1f44" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M1138 256 C1220 256 1200 460 1278 460" fill="none" stroke="#0a1f44" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+  <rect x="1188" y="520" width="64" height="42" rx="8" fill="#f6f8fc"/>
+  <text x="1220" y="538" font-size="12" fill="#0a1f44" text-anchor="middle" font-weight="700">driver</text>
+  <text x="1220" y="555" font-size="12" fill="#3d4f6b" text-anchor="middle">queries</text>
+
+  <!-- legend -->
+  <g transform="translate(40 900)" font-size="14" fill="#3d4f6b">
+    <rect width="22" height="16" rx="4" fill="#0b5ed7"/><text x="32" y="13">Alejandra: jobs &amp; schools, register, login, shared setup</text>
+    <rect x="520" width="22" height="16" rx="4" fill="#fffaf0" stroke="#c9a227" stroke-dasharray="4 3"/><text x="552" y="13">Suk: addresses timeline (to integrate)</text>
+    <path d="M900 8 H940" stroke="#0a1f44" stroke-width="2.5" marker-end="url(#arr)"/><text x="950" y="13">request / query</text>
+    <path d="M1090 8 H1130" stroke="#0a1f44" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)"/><text x="1140" y="13">session read / write</text>
+  </g>
+  <text x="40" y="958" font-size="13" fill="#5b6b85">Not used (course rules): Mongoose, axios, the cors package, Next.js. Secrets live in .env (MONGO_URI, SESSION_SECRET), never in the repo.</text>
+</svg>

@@ -1,0 +1,70 @@
+.activities-page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.activities-page__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.activities-page__header h1 {
+  margin: 0 0 6px;
+  font-size: 32px;
+}
+
+.activities-page__header p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 620px;
+}
+
+.activities-page__add {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.activities-page__help {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+}
+
+.activities-page__help summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.activities-page__help ul {
+  margin: 12px 0 4px;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.activities-page__message {
+  margin: 0;
+  background: var(--danger-bg);
+  color: #58151c;
+  border: 1px solid #f1aeb5;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.activities-page__status {
+  margin: 0;
+  color: var(--muted);
+}

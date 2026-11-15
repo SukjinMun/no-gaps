@@ -1,0 +1,124 @@
+.gap-summary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gap-summary__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.gap-summary__header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.gap-summary__range {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.gap-summary__stats {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.gap-summary__stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+}
+
+.gap-summary__stats dt {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.gap-summary__stats dd {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.gap-summary__value--gap {
+  color: var(--gap-text);
+}
+
+.gap-summary__value--ok {
+  color: var(--covered);
+}
+
+.gap-summary__value--explained {
+  color: var(--explained);
+}
+
+.gap-summary__bar {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  background: var(--gap-bg);
+  border: 1px solid var(--gap-border);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.gap-summary__bar-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--covered);
+  color: #ffffff;
+}
+
+.gap-summary__bar-missing {
+  flex: 1;
+  text-align: center;
+  color: var(--gap-text);
+}
+
+.gap-summary__gaps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gap-summary__gap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  background: var(--gap-bg);
+  border: 1px solid var(--gap-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--gap-text);
+}
+
+.gap-summary__fill {
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid #c9a227;
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--gap-text);
+  cursor: pointer;
+}

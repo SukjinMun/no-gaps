@@ -1,0 +1,64 @@
+.life-timeline {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.life-timeline__title {
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+
+.life-timeline__bar {
+  display: flex;
+  gap: 2px;
+  min-height: 56px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.life-timeline__segment {
+  min-width: 12px;
+  min-height: 56px;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.life-timeline__segment:hover {
+  filter: brightness(0.9);
+}
+
+.life-timeline__axis {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.life-timeline__legend {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.life-timeline__legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.life-timeline__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
