@@ -87,46 +87,10 @@
   }
 }
 
-.activity-form__field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.activity-form__field label {
-  font-weight: 600;
-}
-
-.activity-form__field input,
-.activity-form__field textarea {
-  border: 1px solid var(--input-border);
-  border-radius: 6px;
-  padding: 10px 12px;
-  min-height: 44px;
-  width: 100%;
-}
-
-.activity-form__field textarea {
-  resize: vertical;
-}
-
-.activity-form__field input:disabled {
-  background: #e9ecef;
-}
-
-.activity-form__field--invalid input,
-.activity-form__field--invalid textarea {
-  border: 2px solid var(--danger);
-}
-
 .activity-form__hint {
   margin: -8px 0 0;
   color: var(--muted);
   font-size: 13px;
-}
-
-.activity-form__field .activity-form__hint {
-  margin: 0;
 }
 
 .activity-form__error {

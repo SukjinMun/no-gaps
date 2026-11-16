@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Field from "./Field.jsx";
 import { activityShape } from "../utils/activityShape.js";
 import "./ActivityForm.css";
 
@@ -217,28 +218,4 @@ ActivityForm.propTypes = {
   initialActivity: PropTypes.oneOfType([activityShape, PropTypes.object]),
   onSave: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-};
-
-// One labelled field with its hint and error message.
-function Field({ id, label, hint, error, children }) {
-  return (
-    <div className={`activity-form__field${error ? " activity-form__field--invalid" : ""}`}>
-      <label htmlFor={id}>{label}</label>
-      {children}
-      {hint && <span className="activity-form__hint">{hint}</span>}
-      {error && (
-        <span className="activity-form__error" id={`${id}-error`}>
-          {error}
-        </span>
-      )}
-    </div>
-  );
-}
-
-Field.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  hint: PropTypes.string,
-  error: PropTypes.string,
-  children: PropTypes.node.isRequired,
 };

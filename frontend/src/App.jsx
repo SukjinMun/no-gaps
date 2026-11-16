@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
@@ -78,3 +79,6 @@ export default function App() {
     </>
   );
 }
+
+// App takes no props: it reads the session from the server.
+App.propTypes = {};

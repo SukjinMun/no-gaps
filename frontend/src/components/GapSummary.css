@@ -62,32 +62,50 @@
   color: var(--explained);
 }
 
-.gap-summary__bar {
-  height: 32px;
+.gap-summary__progress {
   display: flex;
-  align-items: center;
-  background: var(--gap-bg);
-  border: 1px solid var(--gap-border);
-  border-radius: 6px;
-  overflow: hidden;
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.gap-summary__bar-fill {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.gap-summary__bar {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 24px;
+  border: 1px solid var(--gap-border);
+  border-radius: 6px;
+  background: var(--gap-bg);
+  overflow: hidden;
+}
+
+.gap-summary__bar::-webkit-progress-bar {
+  background: var(--gap-bg);
+}
+
+.gap-summary__bar::-webkit-progress-value {
   background: var(--covered);
-  color: #ffffff;
+}
+
+.gap-summary__bar::-moz-progress-bar {
+  background: var(--covered);
+}
+
+.gap-summary__bar-legend {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.gap-summary__bar-recorded {
+  color: var(--covered);
 }
 
 .gap-summary__bar-missing {
-  flex: 1;
-  text-align: center;
   color: var(--gap-text);
 }
 

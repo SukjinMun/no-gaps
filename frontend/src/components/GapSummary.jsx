@@ -3,9 +3,6 @@ import { gapShape } from "../utils/activityShape.js";
 import { formatMonth, formatPeriod } from "../utils/months.js";
 import "./GapSummary.css";
 
-// Below this share the text no longer fits inside its part of the bar.
-const MIN_LABEL_PERCENT = 30;
-
 const plural = (count, word) => `${count} ${word}${count === 1 ? "" : "s"}`;
 
 export default function GapSummary({ summary, onAddForGap }) {
@@ -41,17 +38,19 @@ export default function GapSummary({ summary, onAddForGap }) {
         </div>
       </dl>
 
-      <div
-        className="gap-summary__bar"
-        role="img"
-        aria-label={`${coveredPercent}% of the last ${range.years} years recorded, ${missingPercent}% unrecorded`}
-      >
-        <div className="gap-summary__bar-fill" style={{ width: `${coveredPercent}%` }}>
-          {coveredPercent >= MIN_LABEL_PERCENT && `${coveredPercent}% recorded`}
-        </div>
-        {missingPercent >= MIN_LABEL_PERCENT && (
+      <div className="gap-summary__progress">
+        <progress
+          className="gap-summary__bar"
+          value={coveredPercent}
+          max={100}
+          aria-label={`${coveredPercent}% of the last ${range.years} years recorded, ${missingPercent}% unrecorded`}
+        >
+          {coveredPercent}%
+        </progress>
+        <p className="gap-summary__bar-legend" aria-hidden="true">
+          <span className="gap-summary__bar-recorded">{coveredPercent}% recorded</span>
           <span className="gap-summary__bar-missing">{missingPercent}% unrecorded</span>
-        )}
+        </p>
       </div>
 
       {gaps.length > 0 && (
