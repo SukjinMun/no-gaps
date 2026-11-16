@@ -124,6 +124,35 @@ user's entries.
 | PUT | `/api/addresses/:id` | Edit one of mine |
 | DELETE | `/api/addresses/:id` | Delete one of mine |
 
+## Rubric
+
+Where each rubric item is in this repository.
+
+| Rubric item | Where |
+| --- | --- |
+| Design document | [docs/DESIGN.md](docs/DESIGN.md) has the project description, the user personas, the user stories and the design mockups |
+| Requirements approved in #project | [Objective](#objective) |
+| Instructions on how to use the app | "How to use this page" on the Addresses page and on the Jobs & Schools page |
+| ESLint config file | `backend/eslint.config.js` and `frontend/eslint.config.js`, run with `npm run lint` |
+| Code organization | [Project structure](#project-structure) |
+| At least 3 React components (using hooks) | `frontend/src/components` and `frontend/src/pages` |
+| Each React component in its own file | One `.jsx` file per component in those two folders |
+| Deployed on a public server | [Demo](#demo) |
+| 2 Mongo collections with CRUD | `activities` by Alejandra (`backend/routes/activities.js`, `backend/db/activitiesDB.js`) and `addresses` by Suk (`backend/routes/Addresses.js`, `backend/db/MyDBAddresses.js`) |
+| 1k synthetic records | `npm run seed` adds 1,200+ activities and 1,000+ addresses (`backend/seed`) |
+| Node + Express | `backend/server.js` and `backend/app.js` |
+| Prettier | `.prettierrc.json`, run with `npm run format` |
+| Standard HTML elements | Real `button`, `a`, `form`, `label` and `input` elements |
+| CSS organized by components | Each component imports the CSS file with its own name |
+| README | Authors, class link, objective and screenshots above, instructions in [Build and run](#build-and-run) |
+| No exposed credentials | `backend/.env.example` has no secret and `.env` is in `.gitignore` |
+| package.json for the backend and the frontend | `backend/package.json` and `frontend/package.json` |
+| MIT license | [LICENSE](LICENSE) |
+| Video | [Demo](#demo) |
+| PropTypes | The `propTypes` block of each component file |
+| No axios, Mongoose or CORS | The dependencies in the two `package.json` files |
+| Authentication using Passport | `backend/auth/passport.js` and `backend/routes/auth.js` |
+
 ## License
 
 [MIT](LICENSE)
