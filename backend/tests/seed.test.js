@@ -71,5 +71,3 @@ test("demo.complete and demo.explained have no gaps; demo.empty is all gap", () 
   assert.deepEqual(gapsFor("demo.explained"), []);
   assert.equal(gapsFor("demo.empty")[0].months, 120);
 });
-
-console.log(`Seeded activities: ${docs.length}`);

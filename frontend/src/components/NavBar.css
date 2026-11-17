@@ -24,11 +24,16 @@
   text-decoration: none;
 }
 
+.navbar__brand:hover {
+  color: var(--bar-text);
+}
+
 .navbar__logo {
   display: block;
   width: 32px;
   height: 32px;
 }
+
 .navbar__links {
   display: flex;
   flex-wrap: wrap;

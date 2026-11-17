@@ -73,7 +73,8 @@ Supporting stories:
 - As a new user, I want to create an account and log in, so only I can see my history.
 - As Grace, I want to explain a break (for example, caregiving) so those months don't show up as
   missing.
-- As Grace, I want to click a missing period and start an entry with its dates already filled in.
+- As Grace, I want to click a missing period and start an entry with its dates already filled in
+  so I do not type them again.
 
 ### Addresses (Suk)
 
@@ -269,8 +270,9 @@ user, so a filter changes only the list.
    - Clicking a gap opens the form with its dates filled in. Clicking an activity scrolls to
      it in the list and highlights it.
 4. **"How to use this page"**: a collapsible help section.
-5. **Gap check**: months covered, number of gaps, months explained, a bar with the recorded and
-   unrecorded percentages, and the list of gaps with an "Add activity for these months" button.
+5. **Gap check**: months covered, number of gaps, months explained, a progress bar of the
+   recorded share with the recorded and unrecorded percentages below it, and the list of gaps
+   with an "Add activity for these months" button.
 6. **Form** (when open): add or edit an activity.
 7. **Timeline list**: every activity, newest first, with Edit and Delete (Delete asks to
    confirm).
@@ -286,8 +288,9 @@ Screenshot of the built page: [screenshot.gif](screenshot.gif).
 4. **Gap check.** The months covered and the counts of gaps and overlaps for the last 5 years. A
    progress bar shows the covered share. Each gap has an "Add address for these months" button.
    Each overlap names its months and both streets. A gap row is yellow and an overlap row is red.
-5. **Filter.** A search box above the list narrows it by street, city or landlord. The gap check
-   stays complete.
+5. **Filter.** When the user has at least one address, a search box above the list narrows it by
+   street, city or landlord. The gap check stays complete. The dashed gap rows of the list are
+   hidden while a filter is active.
 6. **Timeline list.** Every address with Edit and Delete in newest-first order. Delete asks to
    confirm. A gap shows as a dashed row between the two addresses around it. An address in an
    overlap carries an "Overlap" badge.
@@ -373,6 +376,11 @@ and 06 show the two address pages.
   entries in the list.
 - **Menu.** The header links wrap onto a second line on small screens instead of collapsing
   into a ≡ menu.
+- **Address gap check.** Wireframe 05 drew the gap inside a 5-year bar with a "Fill this gap"
+  button. The app shows a progress bar of the covered months, and each gap row has an "Add
+  address for these months" button.
+- **Address form.** The country is required as well as the street and the city, and the form
+  starts with United States.
 
 ### Colors
 
@@ -387,13 +395,13 @@ and 06 show the two address pages.
 | Gap (months unrecorded) | `#FFD966` |
 | Overlap (months at two addresses) | `#F8D7DA` |
 
-All colors are CSS variables in `frontend/src/index.css`.
+The colors of this table are CSS variables in `frontend/src/index.css`.
 
 ### Accessibility
 
 - Semantic HTML: `<button>`, `<form>`, `<label htmlFor>`, `<nav>`, `<header>`, `<footer>`.
   No `div` or `span` with an onClick.
-- Field errors use `role="alert"` and appear next to each field.
+- Form-level messages use `role="alert"`, and each field error appears right under its field.
 - Touch targets are at least 44 px. The layout works at 390 px wide.
 - Every timeline segment is a button with a full `aria-label`. The gap list below the
   timeline offers the same actions with larger targets.
@@ -427,7 +435,7 @@ Demo accounts (password `nogaps-demo`):
 
 | Account | Jobs & Schools | Addresses |
 | --- | --- | --- |
-| `demo.gaps` | Two 3-month gaps and 18 explained months | A 3-month gap and a 2-month overlap |
+| `demo.gaps` | A gap at the start of the range (3 months in November 2026), a 3-month gap and 18 explained months | A 3-month gap and a 2-month overlap |
 | `demo.complete` | No gaps; school and a part-time job overlap | No gaps and no overlaps |
 | `demo.explained` | A break covered by an explained period | No gaps and a 3-month overlap |
 | `demo.empty` | An empty history | An empty history |
@@ -435,7 +443,8 @@ Demo accounts (password `nogaps-demo`):
 ## 10. Tech stack
 
 - Frontend: React 18 with hooks, React Router 6, Vite 5, `fetch`, PropTypes, custom CSS. The
-  address pages use React Bootstrap 2 with Bootstrap 5 for their buttons and form controls.
+  address pages use React Bootstrap 2 with Bootstrap 5 for their buttons, form controls, alerts
+  and badges.
 - Backend: Node.js 20.6+, Express 4, native MongoDB driver 6.
 - Login: Passport (passport-local), express-session, connect-mongo, bcrypt.
 - Tooling: ESLint and Prettier.

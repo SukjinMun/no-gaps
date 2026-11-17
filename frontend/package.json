@@ -2,6 +2,7 @@
   "name": "nogaps-frontend",
   "version": "1.0.0",
   "private": true,
+  "author": "Alejandra Aimee Rivas Montes and Suk Jin Mun",
   "type": "module",
   "license": "MIT",
   "scripts": {

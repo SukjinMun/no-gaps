@@ -1,6 +1,6 @@
 // Creates the demo accounts and the synthetic users. Run before any other
 // seed (Suk's addresses seed uses these users' ids too).
-//   npm run seed       (runs this file, then seedActivities.js)
+//   npm run seed       (runs this file, then seedActivities.js and seedAddresses.js)
 // Running it again keeps the same users and ids (it updates, never duplicates).
 import bcrypt from "bcrypt";
 import { connectDB, closeDB } from "../db/connection.js";

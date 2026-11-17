@@ -28,11 +28,11 @@
   <rect x="64" y="362" width="352" height="232" rx="12" fill="#eef3fb"/>
   <text x="82" y="390" font-size="16" font-weight="700" fill="#0a1f44">Components · own file, CSS, PropTypes</text>
   <text x="82" y="420" font-size="15" fill="#3d4f6b">ActivitiesPage</text>
-  <text x="96" y="444" font-size="15" fill="#3d4f6b">├ GapSummary</text>
-  <text x="96" y="468" font-size="15" fill="#3d4f6b">├ ActivityForm</text>
+  <text x="96" y="444" font-size="15" fill="#3d4f6b">├ LifeTimeline · GapSummary</text>
+  <text x="96" y="468" font-size="15" fill="#3d4f6b">├ ActivityForm → Field</text>
   <text x="96" y="492" font-size="15" fill="#3d4f6b">└ ActivityList → ActivityItem</text>
-  <text x="82" y="522" font-size="15" fill="#3d4f6b">NavBar · LoginForm · RegisterForm</text>
-  <text x="82" y="552" font-size="15" fill="#8a6d1f">AddressesPage (Suk)</text>
+  <text x="82" y="522" font-size="15" fill="#3d4f6b">NavBar · Footer · LoginForm · RegisterForm</text>
+  <text x="82" y="552" font-size="15" fill="#8a6d1f">AddressesPage · AddressFormPage (Suk)</text>
   <text x="82" y="578" font-size="13" fill="#5b6b85">Hooks: useState, useEffect, useCallback, useRef</text>
 
   <rect x="64" y="610" width="352" height="112" rx="12" fill="#0a1f44"/>
@@ -84,13 +84,13 @@
   </g>
   <path d="M1030 556 V572" stroke="#0a1f44" stroke-width="2" marker-end="url(#arr)"/>
   <path d="M960 556 L870 572" stroke="#0a1f44" stroke-width="2" marker-end="url(#arr)"/>
-  <text x="562" y="604" font-size="13" fill="#5b6b85">38 tests with node:test</text>
+  <text x="562" y="604" font-size="13" fill="#5b6b85">72 tests with node:test</text>
   <text x="562" y="622" font-size="13" fill="#5b6b85">and in-memory fake stores</text>
 
   <!-- db layer -->
   <rect x="544" y="666" width="612" height="96" rx="12" fill="#0a1f44"/>
   <text x="562" y="694" font-size="16" font-weight="700" fill="#f6f8fc">db/ · native MongoDB driver (no Mongoose)</text>
-  <text x="562" y="720" font-size="15" fill="#b6c6e3">connection.js · usersDB.js · activitiesDB.js · ids.js</text>
+  <text x="562" y="720" font-size="15" fill="#b6c6e3">connection.js · usersDB.js · activitiesDB.js · MyDBAddresses.js · ids.js</text>
   <text x="562" y="744" font-size="14" fill="#ffd966">Every activities query filters by userId from the session; others’ ids return 404</text>
 
   <rect x="544" y="778" width="612" height="68" rx="12" fill="#ffffff" stroke="#c5d3ea" stroke-dasharray="6 4"/>
@@ -131,7 +131,7 @@
   <text x="1300" y="762" font-size="14" fill="#3d4f6b">2. seedActivities.js</text>
   <text x="1316" y="782" font-size="13" fill="#5b6b85">reproducible histories with</text>
   <text x="1316" y="800" font-size="13" fill="#5b6b85">gaps, overlaps, explained</text>
-  <text x="1300" y="828" font-size="14" fill="#8a6d1f">3. addresses seed (Suk)</text>
+  <text x="1300" y="828" font-size="14" fill="#8a6d1f">3. seedAddresses.js (Suk)</text>
 
   <!-- ===== Arrows between columns ===== -->
   <path d="M416 666 C470 666 470 370 538 370" fill="none" stroke="#0a1f44" stroke-width="2.5" marker-end="url(#arr)"/>
@@ -149,7 +149,7 @@
   <!-- legend -->
   <g transform="translate(40 900)" font-size="14" fill="#3d4f6b">
     <rect width="22" height="16" rx="4" fill="#0b5ed7"/><text x="32" y="13">Alejandra: jobs &amp; schools, register, login, shared setup</text>
-    <rect x="520" width="22" height="16" rx="4" fill="#fffaf0" stroke="#c9a227" stroke-dasharray="4 3"/><text x="552" y="13">Suk: addresses timeline (to integrate)</text>
+    <rect x="520" width="22" height="16" rx="4" fill="#fffaf0" stroke="#c9a227" stroke-dasharray="4 3"/><text x="552" y="13">Suk: addresses timeline</text>
     <path d="M900 8 H940" stroke="#0a1f44" stroke-width="2.5" marker-end="url(#arr)"/><text x="950" y="13">request / query</text>
     <path d="M1090 8 H1130" stroke="#0a1f44" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)"/><text x="1140" y="13">session read / write</text>
   </g>
