@@ -33,6 +33,39 @@
   filter: brightness(0.9);
 }
 
+/* Colors: one per activity type; several types at once become a gradient. */
+.life-timeline__color--work {
+  background: var(--work);
+}
+
+.life-timeline__color--school {
+  background: var(--school);
+}
+
+.life-timeline__color--other {
+  background: var(--other);
+}
+
+.life-timeline__color--gap {
+  background: var(--gap-fill);
+}
+
+.life-timeline__color--work-school {
+  background: linear-gradient(90deg, var(--work), var(--school));
+}
+
+.life-timeline__color--work-other {
+  background: linear-gradient(90deg, var(--work), var(--other));
+}
+
+.life-timeline__color--school-other {
+  background: linear-gradient(90deg, var(--school), var(--other));
+}
+
+.life-timeline__color--work-school-other {
+  background: linear-gradient(90deg, var(--work), var(--school), var(--other));
+}
+
 .life-timeline__axis {
   display: flex;
   justify-content: space-between;
@@ -61,4 +94,486 @@
   width: 14px;
   height: 14px;
   border-radius: 3px;
+}
+
+/* Widths: a segment grows in proportion to its months (1 to 120, the longest range). */
+
+.life-timeline__segment--m1 {
+  flex: 1 1 0;
+}
+
+.life-timeline__segment--m2 {
+  flex: 2 2 0;
+}
+
+.life-timeline__segment--m3 {
+  flex: 3 3 0;
+}
+
+.life-timeline__segment--m4 {
+  flex: 4 4 0;
+}
+
+.life-timeline__segment--m5 {
+  flex: 5 5 0;
+}
+
+.life-timeline__segment--m6 {
+  flex: 6 6 0;
+}
+
+.life-timeline__segment--m7 {
+  flex: 7 7 0;
+}
+
+.life-timeline__segment--m8 {
+  flex: 8 8 0;
+}
+
+.life-timeline__segment--m9 {
+  flex: 9 9 0;
+}
+
+.life-timeline__segment--m10 {
+  flex: 10 10 0;
+}
+
+.life-timeline__segment--m11 {
+  flex: 11 11 0;
+}
+
+.life-timeline__segment--m12 {
+  flex: 12 12 0;
+}
+
+.life-timeline__segment--m13 {
+  flex: 13 13 0;
+}
+
+.life-timeline__segment--m14 {
+  flex: 14 14 0;
+}
+
+.life-timeline__segment--m15 {
+  flex: 15 15 0;
+}
+
+.life-timeline__segment--m16 {
+  flex: 16 16 0;
+}
+
+.life-timeline__segment--m17 {
+  flex: 17 17 0;
+}
+
+.life-timeline__segment--m18 {
+  flex: 18 18 0;
+}
+
+.life-timeline__segment--m19 {
+  flex: 19 19 0;
+}
+
+.life-timeline__segment--m20 {
+  flex: 20 20 0;
+}
+
+.life-timeline__segment--m21 {
+  flex: 21 21 0;
+}
+
+.life-timeline__segment--m22 {
+  flex: 22 22 0;
+}
+
+.life-timeline__segment--m23 {
+  flex: 23 23 0;
+}
+
+.life-timeline__segment--m24 {
+  flex: 24 24 0;
+}
+
+.life-timeline__segment--m25 {
+  flex: 25 25 0;
+}
+
+.life-timeline__segment--m26 {
+  flex: 26 26 0;
+}
+
+.life-timeline__segment--m27 {
+  flex: 27 27 0;
+}
+
+.life-timeline__segment--m28 {
+  flex: 28 28 0;
+}
+
+.life-timeline__segment--m29 {
+  flex: 29 29 0;
+}
+
+.life-timeline__segment--m30 {
+  flex: 30 30 0;
+}
+
+.life-timeline__segment--m31 {
+  flex: 31 31 0;
+}
+
+.life-timeline__segment--m32 {
+  flex: 32 32 0;
+}
+
+.life-timeline__segment--m33 {
+  flex: 33 33 0;
+}
+
+.life-timeline__segment--m34 {
+  flex: 34 34 0;
+}
+
+.life-timeline__segment--m35 {
+  flex: 35 35 0;
+}
+
+.life-timeline__segment--m36 {
+  flex: 36 36 0;
+}
+
+.life-timeline__segment--m37 {
+  flex: 37 37 0;
+}
+
+.life-timeline__segment--m38 {
+  flex: 38 38 0;
+}
+
+.life-timeline__segment--m39 {
+  flex: 39 39 0;
+}
+
+.life-timeline__segment--m40 {
+  flex: 40 40 0;
+}
+
+.life-timeline__segment--m41 {
+  flex: 41 41 0;
+}
+
+.life-timeline__segment--m42 {
+  flex: 42 42 0;
+}
+
+.life-timeline__segment--m43 {
+  flex: 43 43 0;
+}
+
+.life-timeline__segment--m44 {
+  flex: 44 44 0;
+}
+
+.life-timeline__segment--m45 {
+  flex: 45 45 0;
+}
+
+.life-timeline__segment--m46 {
+  flex: 46 46 0;
+}
+
+.life-timeline__segment--m47 {
+  flex: 47 47 0;
+}
+
+.life-timeline__segment--m48 {
+  flex: 48 48 0;
+}
+
+.life-timeline__segment--m49 {
+  flex: 49 49 0;
+}
+
+.life-timeline__segment--m50 {
+  flex: 50 50 0;
+}
+
+.life-timeline__segment--m51 {
+  flex: 51 51 0;
+}
+
+.life-timeline__segment--m52 {
+  flex: 52 52 0;
+}
+
+.life-timeline__segment--m53 {
+  flex: 53 53 0;
+}
+
+.life-timeline__segment--m54 {
+  flex: 54 54 0;
+}
+
+.life-timeline__segment--m55 {
+  flex: 55 55 0;
+}
+
+.life-timeline__segment--m56 {
+  flex: 56 56 0;
+}
+
+.life-timeline__segment--m57 {
+  flex: 57 57 0;
+}
+
+.life-timeline__segment--m58 {
+  flex: 58 58 0;
+}
+
+.life-timeline__segment--m59 {
+  flex: 59 59 0;
+}
+
+.life-timeline__segment--m60 {
+  flex: 60 60 0;
+}
+
+.life-timeline__segment--m61 {
+  flex: 61 61 0;
+}
+
+.life-timeline__segment--m62 {
+  flex: 62 62 0;
+}
+
+.life-timeline__segment--m63 {
+  flex: 63 63 0;
+}
+
+.life-timeline__segment--m64 {
+  flex: 64 64 0;
+}
+
+.life-timeline__segment--m65 {
+  flex: 65 65 0;
+}
+
+.life-timeline__segment--m66 {
+  flex: 66 66 0;
+}
+
+.life-timeline__segment--m67 {
+  flex: 67 67 0;
+}
+
+.life-timeline__segment--m68 {
+  flex: 68 68 0;
+}
+
+.life-timeline__segment--m69 {
+  flex: 69 69 0;
+}
+
+.life-timeline__segment--m70 {
+  flex: 70 70 0;
+}
+
+.life-timeline__segment--m71 {
+  flex: 71 71 0;
+}
+
+.life-timeline__segment--m72 {
+  flex: 72 72 0;
+}
+
+.life-timeline__segment--m73 {
+  flex: 73 73 0;
+}
+
+.life-timeline__segment--m74 {
+  flex: 74 74 0;
+}
+
+.life-timeline__segment--m75 {
+  flex: 75 75 0;
+}
+
+.life-timeline__segment--m76 {
+  flex: 76 76 0;
+}
+
+.life-timeline__segment--m77 {
+  flex: 77 77 0;
+}
+
+.life-timeline__segment--m78 {
+  flex: 78 78 0;
+}
+
+.life-timeline__segment--m79 {
+  flex: 79 79 0;
+}
+
+.life-timeline__segment--m80 {
+  flex: 80 80 0;
+}
+
+.life-timeline__segment--m81 {
+  flex: 81 81 0;
+}
+
+.life-timeline__segment--m82 {
+  flex: 82 82 0;
+}
+
+.life-timeline__segment--m83 {
+  flex: 83 83 0;
+}
+
+.life-timeline__segment--m84 {
+  flex: 84 84 0;
+}
+
+.life-timeline__segment--m85 {
+  flex: 85 85 0;
+}
+
+.life-timeline__segment--m86 {
+  flex: 86 86 0;
+}
+
+.life-timeline__segment--m87 {
+  flex: 87 87 0;
+}
+
+.life-timeline__segment--m88 {
+  flex: 88 88 0;
+}
+
+.life-timeline__segment--m89 {
+  flex: 89 89 0;
+}
+
+.life-timeline__segment--m90 {
+  flex: 90 90 0;
+}
+
+.life-timeline__segment--m91 {
+  flex: 91 91 0;
+}
+
+.life-timeline__segment--m92 {
+  flex: 92 92 0;
+}
+
+.life-timeline__segment--m93 {
+  flex: 93 93 0;
+}
+
+.life-timeline__segment--m94 {
+  flex: 94 94 0;
+}
+
+.life-timeline__segment--m95 {
+  flex: 95 95 0;
+}
+
+.life-timeline__segment--m96 {
+  flex: 96 96 0;
+}
+
+.life-timeline__segment--m97 {
+  flex: 97 97 0;
+}
+
+.life-timeline__segment--m98 {
+  flex: 98 98 0;
+}
+
+.life-timeline__segment--m99 {
+  flex: 99 99 0;
+}
+
+.life-timeline__segment--m100 {
+  flex: 100 100 0;
+}
+
+.life-timeline__segment--m101 {
+  flex: 101 101 0;
+}
+
+.life-timeline__segment--m102 {
+  flex: 102 102 0;
+}
+
+.life-timeline__segment--m103 {
+  flex: 103 103 0;
+}
+
+.life-timeline__segment--m104 {
+  flex: 104 104 0;
+}
+
+.life-timeline__segment--m105 {
+  flex: 105 105 0;
+}
+
+.life-timeline__segment--m106 {
+  flex: 106 106 0;
+}
+
+.life-timeline__segment--m107 {
+  flex: 107 107 0;
+}
+
+.life-timeline__segment--m108 {
+  flex: 108 108 0;
+}
+
+.life-timeline__segment--m109 {
+  flex: 109 109 0;
+}
+
+.life-timeline__segment--m110 {
+  flex: 110 110 0;
+}
+
+.life-timeline__segment--m111 {
+  flex: 111 111 0;
+}
+
+.life-timeline__segment--m112 {
+  flex: 112 112 0;
+}
+
+.life-timeline__segment--m113 {
+  flex: 113 113 0;
+}
+
+.life-timeline__segment--m114 {
+  flex: 114 114 0;
+}
+
+.life-timeline__segment--m115 {
+  flex: 115 115 0;
+}
+
+.life-timeline__segment--m116 {
+  flex: 116 116 0;
+}
+
+.life-timeline__segment--m117 {
+  flex: 117 117 0;
+}
+
+.life-timeline__segment--m118 {
+  flex: 118 118 0;
+}
+
+.life-timeline__segment--m119 {
+  flex: 119 119 0;
+}
+
+.life-timeline__segment--m120 {
+  flex: 120 120 0;
 }

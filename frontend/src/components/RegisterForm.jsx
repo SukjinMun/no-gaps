@@ -48,6 +48,7 @@ export default function RegisterForm({ onRegistered }) {
           <label htmlFor="username">Username</label>
           <input
             id="username"
+            name="username"
             type="text"
             autoComplete="username"
             value={username}
@@ -66,6 +67,7 @@ export default function RegisterForm({ onRegistered }) {
           <label htmlFor="password">Password</label>
           <input
             id="password"
+            name="password"
             type="password"
             autoComplete="new-password"
             value={password}
@@ -85,6 +87,7 @@ export default function RegisterForm({ onRegistered }) {
           <label htmlFor="confirm">Confirm password</label>
           <input
             id="confirm"
+            name="confirm"
             type="password"
             autoComplete="new-password"
             value={confirm}

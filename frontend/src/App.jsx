@@ -78,3 +78,6 @@ export default function App() {
     </>
   );
 }
+
+// App takes no props: it reads the session from the server.
+App.propTypes = {};

@@ -24,28 +24,29 @@ export default function LoginForm({ notice, onLoggedIn }) {
   }
 
   return (
-    <main className="register">
-      <div className="register__intro">
+    <main className="login">
+      <div className="login__intro">
         <h1>Log in</h1>
         <p>See your addresses, jobs and schools, and any months missing from them.</p>
       </div>
 
-      <form className="register__card" onSubmit={handleSubmit}>
+      <form className="login__card" onSubmit={handleSubmit}>
         {notice && !error && (
-          <p role="status" className="register__notice">
+          <p role="status" className="login__notice">
             {notice}
           </p>
         )}
         {error && (
-          <p role="alert" className="register__alert">
+          <p role="alert" className="login__alert">
             {error}
           </p>
         )}
 
-        <div className="register__field">
+        <div className="login__field">
           <label htmlFor="login-username">Username</label>
           <input
             id="login-username"
+            name="username"
             type="text"
             autoComplete="username"
             required
@@ -54,10 +55,11 @@ export default function LoginForm({ notice, onLoggedIn }) {
           />
         </div>
 
-        <div className="register__field">
+        <div className="login__field">
           <label htmlFor="login-password">Password</label>
           <input
             id="login-password"
+            name="password"
             type="password"
             autoComplete="current-password"
             required
@@ -66,12 +68,12 @@ export default function LoginForm({ notice, onLoggedIn }) {
           />
         </div>
 
-        <button type="submit" className="register__submit" disabled={sending}>
+        <button type="submit" className="login__submit" disabled={sending}>
           {sending ? "Logging in…" : "Log in"}
         </button>
       </form>
 
-      <p className="register__login">
+      <p className="login__register">
         New here? <Link to="/register">Create an account</Link>
       </p>
     </main>

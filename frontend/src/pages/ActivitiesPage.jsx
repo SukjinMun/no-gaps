@@ -162,3 +162,6 @@ export default function ActivitiesPage() {
     </main>
   );
 }
+
+// The page takes no props: it loads the signed-in user's activities itself.
+ActivitiesPage.propTypes = {};

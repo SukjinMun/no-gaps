@@ -36,15 +36,6 @@
   padding: 10px 14px;
 }
 
-.register__notice {
-  margin: 0;
-  background: #d1e7dd;
-  color: #0a3622;
-  border: 1px solid #a3cfbb;
-  border-radius: 6px;
-  padding: 10px 14px;
-}
-
 .register__field {
   display: flex;
   flex-direction: column;

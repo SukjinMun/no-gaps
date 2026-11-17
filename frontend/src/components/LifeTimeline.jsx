@@ -8,11 +8,10 @@ const LABELS = { work: "Work", school: "School", other: "Other" };
 
 const plural = (count, word) => `${count} ${word}${count === 1 ? "" : "s"}`;
 
-// One color per activity type; several types at once become a gradient.
-function segmentBackground(types) {
-  if (types.length === 0) return "var(--gap-fill)";
-  const colors = types.map((type) => `var(--${type})`);
-  return colors.length === 1 ? colors[0] : `linear-gradient(90deg, ${colors.join(", ")})`;
+// The color comes from a CSS class named after the types that cover the segment, for example
+// "work", "work-school" or "gap" when nothing covers it. The CSS file defines every combination.
+function segmentColorClass(types) {
+  return `life-timeline__color--${types.length === 0 ? "gap" : types.join("-")}`;
 }
 
 export default function LifeTimeline({ range, segments, activities, onGapClick, onActivityClick }) {
@@ -38,11 +37,7 @@ export default function LifeTimeline({ range, segments, activities, onGapClick, 
             <button
               key={segment.start}
               type="button"
-              className="life-timeline__segment"
-              style={{
-                flex: `${segment.months} ${segment.months} 0`,
-                background: segmentBackground(types),
-              }}
+              className={`life-timeline__segment ${segmentColorClass(types)} life-timeline__segment--m${segment.months}`}
               title={description}
               aria-label={`${description}. ${isGap ? "Add an activity for these months." : "Show it in the list."}`}
               onClick={() =>
@@ -63,12 +58,12 @@ export default function LifeTimeline({ range, segments, activities, onGapClick, 
       <ul className="life-timeline__legend">
         {TYPES.map((type) => (
           <li key={type}>
-            <span className="life-timeline__swatch" style={{ background: `var(--${type})` }} />
+            <span className={`life-timeline__swatch life-timeline__color--${type}`} />
             {LABELS[type]}
           </li>
         ))}
         <li>
-          <span className="life-timeline__swatch" style={{ background: "var(--gap-fill)" }} />
+          <span className="life-timeline__swatch life-timeline__color--gap" />
           Months unrecorded
         </li>
       </ul>
