@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";

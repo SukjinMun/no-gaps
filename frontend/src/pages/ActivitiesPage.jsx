@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
 import ActivityForm from "../components/ActivityForm.jsx";
 import ActivityList from "../components/ActivityList.jsx";
 import GapSummary from "../components/GapSummary.jsx";
