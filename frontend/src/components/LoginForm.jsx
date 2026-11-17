@@ -46,6 +46,7 @@ export default function LoginForm({ notice, onLoggedIn }) {
           <label htmlFor="login-username">Username</label>
           <input
             id="login-username"
+            name="username"
             type="text"
             autoComplete="username"
             required
@@ -58,6 +59,7 @@ export default function LoginForm({ notice, onLoggedIn }) {
           <label htmlFor="login-password">Password</label>
           <input
             id="login-password"
+            name="password"
             type="password"
             autoComplete="current-password"
             required

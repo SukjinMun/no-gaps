@@ -101,6 +101,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
           <Field id="organization" label={labels.organization} error={errors.organization}>
             <input
               id="organization"
+              name="organization"
               type="text"
               value={values.organization}
               onChange={(e) => setField("organization", e.target.value)}
@@ -109,6 +110,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
           <Field id="title" label={labels.title} error={errors.title}>
             <input
               id="title"
+              name="title"
               type="text"
               value={values.title}
               onChange={(e) => setField("title", e.target.value)}
@@ -121,6 +123,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
           <Field id="startMonth" label="Start month" error={errors.startMonth}>
             <input
               id="startMonth"
+              name="startMonth"
               type="month"
               placeholder="YYYY-MM"
               value={values.startMonth}
@@ -130,6 +133,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
           <Field id="endMonth" label="End month" error={errors.endMonth}>
             <input
               id="endMonth"
+              name="endMonth"
               type="month"
               placeholder="YYYY-MM"
               value={values.isCurrent ? "" : values.endMonth}
@@ -142,6 +146,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
         <label className="activity-form__choice">
           <input
             type="checkbox"
+            name="isCurrent"
             checked={values.isCurrent}
             onChange={(e) => setField("isCurrent", e.target.checked)}
           />
@@ -159,6 +164,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
             <Field id="contactName" label="Name">
               <input
                 id="contactName"
+                name="contactName"
                 type="text"
                 value={values.contact.name}
                 onChange={(e) => setContactField("name", e.target.value)}
@@ -167,6 +173,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
             <Field id="contactRole" label="Role" hint="Supervisor, school office or reference.">
               <input
                 id="contactRole"
+                name="contactRole"
                 type="text"
                 value={values.contact.role}
                 onChange={(e) => setContactField("role", e.target.value)}
@@ -175,6 +182,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
             <Field id="contactPhone" label="Phone">
               <input
                 id="contactPhone"
+                name="contactPhone"
                 type="tel"
                 value={values.contact.phone}
                 onChange={(e) => setContactField("phone", e.target.value)}
@@ -183,6 +191,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
             <Field id="contactEmail" label="Email">
               <input
                 id="contactEmail"
+                name="contactEmail"
                 type="email"
                 placeholder="name@example.com"
                 value={values.contact.email}
@@ -195,6 +204,7 @@ export default function ActivityForm({ initialActivity, onSave, onCancel }) {
         <Field id="notes" label="Notes (optional)">
           <textarea
             id="notes"
+            name="notes"
             rows={3}
             value={values.notes}
             onChange={(e) => setField("notes", e.target.value)}
