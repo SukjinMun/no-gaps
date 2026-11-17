@@ -13,6 +13,11 @@ each with a check that flags the months you haven't recorded.
   gap check, seed), registration and the users seed.
 - **Suk Jin Mun**: Address timeline (addresses collection, page, routes, seed).
 
+Each partner wrote the full stack of their own part. Before the code freeze Suk also made a few
+small fixes in Alejandra's files in pull requests #6 and #7. He removed two unused imports and a
+leftover `console.log`. He added a `name` attribute to the form inputs and alt text to the logo.
+He gave the login form its own CSS rules and fixed the hover color of the brand link.
+
 ## Class
 
 [CS5610 Web Development](https://johnguerra.co/classes/webDevelopment_online_fall_2026/)
@@ -45,7 +50,7 @@ Demo accounts (password `nogaps-demo`):
 
 | Account | Jobs & Schools | Addresses |
 | --- | --- | --- |
-| `demo.gaps` | Two 3-month gaps and an 18-month explained period | A 3-month gap and a 2-month overlap |
+| `demo.gaps` | A gap at the start of the 10-year range (3 months in November 2026), a 3-month gap and an 18-month explained period | A 3-month gap and a 2-month overlap |
 | `demo.complete` | No gaps; school and a part-time job overlap | No gaps and no overlaps |
 | `demo.explained` | A break covered by an explained period | No gaps and a 3-month overlap |
 | `demo.empty` | An empty history | An empty history |
@@ -78,8 +83,9 @@ npm install
 npm run dev            # app on http://localhost:5173 (sends /api to the backend)
 ```
 
-Production build: run `npm run build` in `frontend`, then `npm start` in `backend` with
-`NODE_ENV=production`. Express serves the built app from `frontend/dist`.
+Production build: run `npm run build` in `frontend`. On the host, set `MONGO_URI`, `DB_NAME`,
+`SESSION_SECRET` and `NODE_ENV=production` as environment variables and run `npm start` in
+`backend`. Express serves the built app from `frontend/dist`.
 
 Other scripts (both folders): `npm run lint` (ESLint) and `npm run format` (Prettier).
 `npm test` in `backend` runs the tests with Node's built-in test runner.
@@ -91,12 +97,14 @@ backend/
   auth/          Passport setup and the login check
   controllers/   route handlers (activities, register)
   db/            MongoDB connection and one file per collection
+  middleware/    the login check for protected routes
   routes/        Express routers
   seed/          synthetic data scripts
   utils/         gap check, validation, month helpers
   tests/
 frontend/src/
   api/           fetch helpers
+  assets/        the logo
   components/    one component per file, each with its own CSS file
   pages/
   utils/
@@ -132,11 +140,12 @@ Where each rubric item is in this repository.
 | --- | --- |
 | Design document | [docs/DESIGN.md](docs/DESIGN.md) has the project description, the user personas, the user stories and the design mockups |
 | Requirements approved in #project | [Objective](#objective) |
+| Is the app actually useful | [Objective](#objective) names the forms that ask for these histories |
 | Instructions on how to use the app | "How to use this page" on the Addresses page and on the Jobs & Schools page |
 | ESLint config file | `backend/eslint.config.js` and `frontend/eslint.config.js`, run with `npm run lint` |
 | Code organization | [Project structure](#project-structure) |
 | At least 3 React components (using hooks) | `frontend/src/components` and `frontend/src/pages` |
-| Each React component in its own file | One `.jsx` file per component in those two folders |
+| Each React component in its own file | One `.jsx` file per component in those two folders, plus `frontend/src/App.jsx` |
 | Deployed on a public server | [Demo](#demo) |
 | 2 Mongo collections with CRUD | `activities` by Alejandra (`backend/routes/activities.js`, `backend/db/activitiesDB.js`) and `addresses` by Suk (`backend/routes/Addresses.js`, `backend/db/MyDBAddresses.js`) |
 | 1k synthetic records | `npm run seed` adds 1,200+ activities and 1,000+ addresses (`backend/seed`) |
@@ -148,7 +157,9 @@ Where each rubric item is in this repository.
 | No exposed credentials | `backend/.env.example` has no secret and `.env` is in `.gitignore` |
 | package.json for the backend and the frontend | `backend/package.json` and `frontend/package.json` |
 | MIT license | [LICENSE](LICENSE) |
+| No leftover code | Every source file is imported by another file or run by an npm script |
 | Video | [Demo](#demo) |
+| Code frozen on time | [Code freeze](#code-freeze) |
 | PropTypes | The `propTypes` block of each component file |
 | No axios, Mongoose or CORS | The dependencies in the two `package.json` files |
 | Authentication using Passport | `backend/auth/passport.js` and `backend/routes/auth.js` |
@@ -156,3 +167,8 @@ Where each rubric item is in this repository.
 ## License
 
 [MIT](LICENSE)
+
+## Code freeze
+
+Suk Jin Mun's last code commit before the code freeze on 2026.11.17 at 2:59 am ET is 2289b35.
+Alejandra Aimee Rivas Montes's last code commit before the code freeze on 2026.11.17 at 2:59 am ET is 3815e47.
