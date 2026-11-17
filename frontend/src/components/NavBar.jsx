@@ -20,7 +20,7 @@ export default function NavBar({ username, onLogOut }) {
     <header className="navbar">
       <nav aria-label="Main" className="navbar__inner">
         <NavLink to="/" className="navbar__brand">
-          <img src={logoMark} alt="" className="navbar__logo" width="32" height="32" />
+          <img src={logoMark} alt="No Gaps logo" className="navbar__logo" width="32" height="32" />
           No Gaps
         </NavLink>
 
