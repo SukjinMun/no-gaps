@@ -1,2 +1,85 @@
-/* The login page uses the same layout and fields as the register page. */
-@import "./RegisterForm.css";
+.login {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 56px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login__intro h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+.login__intro p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.login__card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login__alert {
+  margin: 0;
+  background: var(--danger-bg);
+  color: #58151c;
+  border: 1px solid #f1aeb5;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.login__notice {
+  margin: 0;
+  background: #d1e7dd;
+  color: #0a3622;
+  border: 1px solid #a3cfbb;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login__field label {
+  font-weight: 600;
+}
+
+.login__field input {
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  min-height: 44px;
+}
+
+.login__submit {
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login__submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.login__register {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+}
