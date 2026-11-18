@@ -41,19 +41,20 @@ The app organizes what you enter; it doesn't verify it.
 
 ## Demo
 
-- Deployed app: [no-gaps.onrender.com](https://no-gaps.onrender.com)
+- Deployed app: [no-gaps.onrender.com](https://no-gaps.onrender.com). The first load can take about
+  a minute because the free server sleeps when it is idle.
 - Video: [YouTube](https://youtu.be/9in8LgxNYj0)
-- Design document: [docs/DESIGN.pdf](docs/DESIGN.pdf) (PDF) and [docs/DESIGN.md](docs/DESIGN.md) (the same text as a GitHub page)
+- Design document: [docs/DESIGN.pdf](docs/DESIGN.pdf)
 - Slides: [Google Slides](https://docs.google.com/presentation/d/1r8hK2WlgtJ56rmtv6cy-PEECMXk2hrNlZG-sYHmKLh0/edit?usp=sharing)
 
 Demo accounts (password `nogaps-demo`):
 
-| Account          | Jobs & Schools                                                                                                      | Addresses                           |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| `demo.gaps`      | A gap at the start of the 10-year range (3 months in November 2026), a 3-month gap and an 18-month explained period | A 3-month gap and a 2-month overlap |
-| `demo.complete`  | No gaps; school and a part-time job overlap                                                                         | No gaps and no overlaps             |
-| `demo.explained` | A break covered by an explained period                                                                              | No gaps and a 3-month overlap       |
-| `demo.empty`     | An empty history                                                                                                    | An empty history                    |
+| Account          | Jobs & Schools                                                                                                                             | Addresses                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| `demo.gaps`      | A 3-month gap at the start of the 10-year range (Dec 2016 to Feb 2017 as of November 2026), a 3-month gap and an 18-month explained period | A 3-month gap and a 2-month overlap |
+| `demo.complete`  | No gaps; school and a part-time job overlap                                                                                                | No gaps and no overlaps             |
+| `demo.explained` | A break covered by an explained period                                                                                                     | No gaps and a 3-month overlap       |
+| `demo.empty`     | An empty history                                                                                                                           | An empty history                    |
 
 ## Tech stack
 
@@ -141,7 +142,7 @@ Where each rubric item is in this repository.
 
 | Rubric item                                   | Where                                                                                                                                                                          |
 | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Design document                               | [docs/DESIGN.pdf](docs/DESIGN.pdf) has the project description, the user personas, the user stories and the design mockups. [docs/DESIGN.md](docs/DESIGN.md) is the same text  |
+| Design document                               | [docs/DESIGN.pdf](docs/DESIGN.pdf) has the project description, the user personas, the user stories and the design mockups                                                     |
 | Requirements approved in #project             | [Objective](#objective)                                                                                                                                                        |
 | Is the app actually useful                    | [Objective](#objective) names the forms that ask for these histories                                                                                                           |
 | Instructions on how to use the app            | "How to use this page" on the Addresses page and on the Jobs & Schools page                                                                                                    |
