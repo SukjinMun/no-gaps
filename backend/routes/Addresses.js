@@ -23,20 +23,26 @@ router.param("id", (req, res, next, id) => {
   next();
 });
 
+const MAX_SEARCH = 100;
+
 // GET /api/addresses?q=
 router.get("/", async (req, res) => {
-  // Escapes regex characters so the filter is literal
+  // Literal, case-insensitive search, capped so a very long query
+  // can't build a huge regex
   const text = String(req.query.q ?? "")
     .trim()
-    .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const search = new RegExp(text, "i");
-  const query = {
-    $or: [{ street: search }, { city: search }, { landlordName: search }],
-  };
+    .slice(0, MAX_SEARCH);
+  const search = new RegExp(text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+  const matches = (address) =>
+    [address.street, address.city, address.landlordName].some((field) =>
+      search.test(field ?? ""),
+    );
 
   try {
+    // The gap check needs every address anyway, so the search filters
+    // that same list instead of running a second query
     const all = await myDBAddresses.getAddresses(req.user._id);
-    const addresses = text ? await myDBAddresses.getAddresses(req.user._id, query) : all;
+    const addresses = text ? all.filter(matches) : all;
     res.json({ addresses, check: checkAddresses(all), total: all.length });
   } catch (error) {
     serverError(res, error);
