@@ -62,6 +62,9 @@ Demo accounts (password `nogaps-demo`):
 - Backend: Node.js and Express (ES modules) with the native MongoDB driver.
 - Login: Passport (passport-local) with express-session; sessions are stored in MongoDB and
   passwords are hashed with bcrypt.
+- Sessions: `connect-mongo` is the session store of express-session. It keeps the sessions in
+  MongoDB so a restart of the server does not log the users out. The data of the app goes only
+  through the native driver.
 - No Mongoose, axios or CORS package.
 
 ## Build and run
@@ -172,3 +175,6 @@ Where each rubric item is in this repository.
 
 Suk Jin Mun's last code commit before the code freeze on 2026.11.17 at 2:59 am ET is 2289b35.
 Alejandra Aimee Rivas Montes's last code commit before the code freeze on 2026.11.17 at 2:59 am ET is 3815e47.
+
+The commits after the code freeze change only `README.md` and files in `docs/`. The folders
+`backend` and `frontend` are the same as in 2289b35.
