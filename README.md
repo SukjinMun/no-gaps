@@ -43,7 +43,7 @@ The app organizes what you enter; it doesn't verify it.
 
 - Deployed app: [no-gaps.onrender.com](https://no-gaps.onrender.com)
 - Video: [YouTube](https://youtu.be/9in8LgxNYj0)
-- Design document: [docs/DESIGN.md](docs/DESIGN.md)
+- Design document: [docs/DESIGN.pdf](docs/DESIGN.pdf) (PDF) and [docs/DESIGN.md](docs/DESIGN.md) (the same text as a GitHub page)
 - Slides: [Google Slides](https://docs.google.com/presentation/d/1r8hK2WlgtJ56rmtv6cy-PEECMXk2hrNlZG-sYHmKLh0/edit?usp=sharing)
 
 Demo accounts (password `nogaps-demo`):
@@ -141,7 +141,7 @@ Where each rubric item is in this repository.
 
 | Rubric item                                   | Where                                                                                                                                                                          |
 | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Design document                               | [docs/DESIGN.md](docs/DESIGN.md) has the project description, the user personas, the user stories and the design mockups                                                       |
+| Design document                               | [docs/DESIGN.pdf](docs/DESIGN.pdf) has the project description, the user personas, the user stories and the design mockups. [docs/DESIGN.md](docs/DESIGN.md) is the same text  |
 | Requirements approved in #project             | [Objective](#objective)                                                                                                                                                        |
 | Is the app actually useful                    | [Objective](#objective) names the forms that ask for these histories                                                                                                           |
 | Instructions on how to use the app            | "How to use this page" on the Addresses page and on the Jobs & Schools page                                                                                                    |
