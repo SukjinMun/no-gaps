@@ -2,7 +2,7 @@ import express from "express";
 import { ObjectId } from "mongodb";
 import { myDBAddresses } from "../db/MyDBAddresses.js";
 import { requireAuth } from "../middleware/requireAuth.js";
-import { checkAddresses } from "../utils/addressCheck.js";
+import { checkAddresses, currentMonth, MONTH_PATTERN, toIndex } from "../utils/addressCheck.js";
 import { readAddress } from "../utils/addressRules.js";
 
 const router = express.Router();
@@ -14,6 +14,18 @@ const serverError = (res, error) => {
   res.status(500).json({ error: "Internal Server Error" });
 };
 
+function checkDate(month) {
+  const now = new Date();
+  if (typeof month !== "string" || !MONTH_PATTERN.test(month)) {
+    return now;
+  }
+  if (Math.abs(toIndex(month) - toIndex(currentMonth(now))) > 1) {
+    return now;
+  }
+  // Mid-month, so the date is in that month in every time zone
+  return new Date(`${month}-15T12:00:00Z`);
+}
+
 router.use(requireAuth);
 
 router.param("id", (req, res, next, id) => {
@@ -23,7 +35,7 @@ router.param("id", (req, res, next, id) => {
   next();
 });
 
-// GET /api/addresses?q=
+// GET /api/addresses?q=&month=
 router.get("/", async (req, res) => {
   // Escapes regex characters so the filter is literal
   const text = String(req.query.q ?? "")
@@ -37,7 +49,11 @@ router.get("/", async (req, res) => {
   try {
     const all = await myDBAddresses.getAddresses(req.user._id);
     const addresses = text ? await myDBAddresses.getAddresses(req.user._id, query) : all;
-    res.json({ addresses, check: checkAddresses(all), total: all.length });
+    res.json({
+      addresses,
+      check: checkAddresses(all, { now: checkDate(req.query.month) }),
+      total: all.length,
+    });
   } catch (error) {
     serverError(res, error);
   }
