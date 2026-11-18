@@ -42,7 +42,7 @@ The app organizes what you enter; it doesn't verify it.
 ## Demo
 
 - Deployed app: [no-gaps.onrender.com](https://no-gaps.onrender.com)
-- Video: [YouTube](https://www.youtube.com/watch?v=N2wUCVGy6lY)
+- Video: [YouTube](https://youtu.be/9in8LgxNYj0)
 - Design document: [docs/DESIGN.md](docs/DESIGN.md)
 - Slides: [Google Slides](https://docs.google.com/presentation/d/1r8hK2WlgtJ56rmtv6cy-PEECMXk2hrNlZG-sYHmKLh0/edit?usp=sharing)
 
