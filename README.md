@@ -48,12 +48,12 @@ The app organizes what you enter; it doesn't verify it.
 
 Demo accounts (password `nogaps-demo`):
 
-| Account | Jobs & Schools | Addresses |
-| --- | --- | --- |
-| `demo.gaps` | A gap at the start of the 10-year range (3 months in November 2026), a 3-month gap and an 18-month explained period | A 3-month gap and a 2-month overlap |
-| `demo.complete` | No gaps; school and a part-time job overlap | No gaps and no overlaps |
-| `demo.explained` | A break covered by an explained period | No gaps and a 3-month overlap |
-| `demo.empty` | An empty history | An empty history |
+| Account          | Jobs & Schools                                                                                                      | Addresses                           |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| `demo.gaps`      | A gap at the start of the 10-year range (3 months in November 2026), a 3-month gap and an 18-month explained period | A 3-month gap and a 2-month overlap |
+| `demo.complete`  | No gaps; school and a part-time job overlap                                                                         | No gaps and no overlaps             |
+| `demo.explained` | A break covered by an explained period                                                                              | No gaps and a 3-month overlap       |
+| `demo.empty`     | An empty history                                                                                                    | An empty history                    |
 
 ## Tech stack
 
@@ -118,54 +118,54 @@ frontend/src/
 All `/api/activities` and `/api/addresses` routes need a logged-in session and only touch that
 user's entries.
 
-| Method | Route | Does |
-| --- | --- | --- |
-| POST | `/api/register` | Create an account |
-| POST | `/api/login` | Log in |
-| POST | `/api/logout` | Log out |
-| GET | `/api/me` | Who is logged in |
-| GET | `/api/activities` | List my jobs, schools and other activities |
-| GET | `/api/activities/gaps?years=10` | Covered, explained and unrecorded months, the list of gaps, and a `timeline` of segments (each with its months and the ids of the activities that cover it; no ids means a gap). `years` can be 5, 7 or 10 |
-| POST | `/api/activities` | Add one |
-| PUT | `/api/activities/:id` | Edit one of mine |
-| DELETE | `/api/activities/:id` | Delete one of mine |
-| GET | `/api/addresses?q=` | List my addresses with the 5-year check of gaps and overlaps. `q` filters the list by street, city or landlord |
-| GET | `/api/addresses/:id` | Read one of mine |
-| POST | `/api/addresses` | Add one |
-| PUT | `/api/addresses/:id` | Edit one of mine |
-| DELETE | `/api/addresses/:id` | Delete one of mine |
+| Method | Route                           | Does                                                                                                                                                                                                       |
+| ------ | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| POST   | `/api/register`                 | Create an account                                                                                                                                                                                          |
+| POST   | `/api/login`                    | Log in                                                                                                                                                                                                     |
+| POST   | `/api/logout`                   | Log out                                                                                                                                                                                                    |
+| GET    | `/api/me`                       | Who is logged in                                                                                                                                                                                           |
+| GET    | `/api/activities`               | List my jobs, schools and other activities                                                                                                                                                                 |
+| GET    | `/api/activities/gaps?years=10` | Covered, explained and unrecorded months, the list of gaps, and a `timeline` of segments (each with its months and the ids of the activities that cover it; no ids means a gap). `years` can be 5, 7 or 10 |
+| POST   | `/api/activities`               | Add one                                                                                                                                                                                                    |
+| PUT    | `/api/activities/:id`           | Edit one of mine                                                                                                                                                                                           |
+| DELETE | `/api/activities/:id`           | Delete one of mine                                                                                                                                                                                         |
+| GET    | `/api/addresses?q=`             | List my addresses with the 5-year check of gaps and overlaps. `q` filters the list by street, city or landlord                                                                                             |
+| GET    | `/api/addresses/:id`            | Read one of mine                                                                                                                                                                                           |
+| POST   | `/api/addresses`                | Add one                                                                                                                                                                                                    |
+| PUT    | `/api/addresses/:id`            | Edit one of mine                                                                                                                                                                                           |
+| DELETE | `/api/addresses/:id`            | Delete one of mine                                                                                                                                                                                         |
 
 ## Rubric
 
 Where each rubric item is in this repository.
 
-| Rubric item | Where |
-| --- | --- |
-| Design document | [docs/DESIGN.md](docs/DESIGN.md) has the project description, the user personas, the user stories and the design mockups |
-| Requirements approved in #project | [Objective](#objective) |
-| Is the app actually useful | [Objective](#objective) names the forms that ask for these histories |
-| Instructions on how to use the app | "How to use this page" on the Addresses page and on the Jobs & Schools page |
-| ESLint config file | `backend/eslint.config.js` and `frontend/eslint.config.js`, run with `npm run lint` |
-| Code organization | [Project structure](#project-structure) |
-| At least 3 React components (using hooks) | `frontend/src/components` and `frontend/src/pages` |
-| Each React component in its own file | One `.jsx` file per component in those two folders, plus `frontend/src/App.jsx` |
-| Deployed on a public server | [Demo](#demo) |
-| 2 Mongo collections with CRUD | `activities` by Alejandra (`backend/routes/activities.js`, `backend/db/activitiesDB.js`) and `addresses` by Suk (`backend/routes/Addresses.js`, `backend/db/MyDBAddresses.js`) |
-| 1k synthetic records | `npm run seed` adds 1,200+ activities and 1,000+ addresses (`backend/seed`) |
-| Node + Express | `backend/server.js` and `backend/app.js` |
-| Prettier | `.prettierrc.json`, run with `npm run format` |
-| Standard HTML elements | Real `button`, `a`, `form`, `label` and `input` elements |
-| CSS organized by components | Each component imports the CSS file with its own name |
-| README | Authors, class link, objective and screenshots above, instructions in [Build and run](#build-and-run) |
-| No exposed credentials | `backend/.env.example` has no secret and `.env` is in `.gitignore` |
-| package.json for the backend and the frontend | `backend/package.json` and `frontend/package.json` |
-| MIT license | [LICENSE](LICENSE) |
-| No leftover code | Every source file is imported by another file or run by an npm script |
-| Video | [Demo](#demo) |
-| Code frozen on time | [Code freeze](#code-freeze) |
-| PropTypes | The `propTypes` block of each component file |
-| No axios, Mongoose or CORS | The dependencies in the two `package.json` files |
-| Authentication using Passport | `backend/auth/passport.js` and `backend/routes/auth.js` |
+| Rubric item                                   | Where                                                                                                                                                                          |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Design document                               | [docs/DESIGN.md](docs/DESIGN.md) has the project description, the user personas, the user stories and the design mockups                                                       |
+| Requirements approved in #project             | [Objective](#objective)                                                                                                                                                        |
+| Is the app actually useful                    | [Objective](#objective) names the forms that ask for these histories                                                                                                           |
+| Instructions on how to use the app            | "How to use this page" on the Addresses page and on the Jobs & Schools page                                                                                                    |
+| ESLint config file                            | `backend/eslint.config.js` and `frontend/eslint.config.js`, run with `npm run lint`                                                                                            |
+| Code organization                             | [Project structure](#project-structure)                                                                                                                                        |
+| At least 3 React components (using hooks)     | `frontend/src/components` and `frontend/src/pages`                                                                                                                             |
+| Each React component in its own file          | One `.jsx` file per component in those two folders, plus `frontend/src/App.jsx`                                                                                                |
+| Deployed on a public server                   | [Demo](#demo)                                                                                                                                                                  |
+| 2 Mongo collections with CRUD                 | `activities` by Alejandra (`backend/routes/activities.js`, `backend/db/activitiesDB.js`) and `addresses` by Suk (`backend/routes/Addresses.js`, `backend/db/MyDBAddresses.js`) |
+| 1k synthetic records                          | `npm run seed` adds 1,200+ activities and 1,000+ addresses (`backend/seed`)                                                                                                    |
+| Node + Express                                | `backend/server.js` and `backend/app.js`                                                                                                                                       |
+| Prettier                                      | `.prettierrc.json`, run with `npm run format`                                                                                                                                  |
+| Standard HTML elements                        | Real `button`, `a`, `form`, `label` and `input` elements                                                                                                                       |
+| CSS organized by components                   | Each component imports the CSS file with its own name                                                                                                                          |
+| README                                        | Authors, class link, objective and screenshots above, instructions in [Build and run](#build-and-run)                                                                          |
+| No exposed credentials                        | `backend/.env.example` has no secret and `.env` is in `.gitignore`                                                                                                             |
+| package.json for the backend and the frontend | `backend/package.json` and `frontend/package.json`                                                                                                                             |
+| MIT license                                   | [LICENSE](LICENSE)                                                                                                                                                             |
+| No leftover code                              | Every source file is imported by another file or run by an npm script                                                                                                          |
+| Video                                         | [Demo](#demo)                                                                                                                                                                  |
+| Code frozen on time                           | [Code freeze](#code-freeze)                                                                                                                                                    |
+| PropTypes                                     | The `propTypes` block of each component file                                                                                                                                   |
+| No axios, Mongoose or CORS                    | The dependencies in the two `package.json` files                                                                                                                               |
+| Authentication using Passport                 | `backend/auth/passport.js` and `backend/routes/auth.js`                                                                                                                        |
 
 ## License
 

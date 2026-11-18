@@ -22,10 +22,10 @@ does not verify anything.
 Each history works and is graded on its own. The Jobs & Schools part never reads the addresses
 collection, and the other way around.
 
-| Part of this document | Author |
-| --- | --- |
+| Part of this document                                                                                                                                                                        | Author    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
 | Personas Marcus and Grace, the Jobs & Schools stories and rules, the `users` and `activities` data, the activities API, the Jobs & Schools page, wireframes 01 to 04, login and registration | Alejandra |
-| Personas Dana and Minh, the address stories and rules, the `addresses` data, the addresses API, the Addresses page, wireframes 05 and 06 | Suk |
+| Personas Dana and Minh, the address stories and rules, the `addresses` data, the addresses API, the Addresses page, wireframes 05 and 06                                                     | Suk       |
 
 ## 2. User personas
 
@@ -126,50 +126,50 @@ one user, and every query filters by that user's id.
 
 ### `users`
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| `_id` | ObjectId | |
-| `username` | string | Unique index |
-| `passwordHash` | string | bcrypt hash; never sent to the browser |
-| `createdAt` | Date | |
-| `seed` | boolean | Only on seeded accounts |
+| Field          | Type     | Notes                                  |
+| -------------- | -------- | -------------------------------------- |
+| `_id`          | ObjectId |                                        |
+| `username`     | string   | Unique index                           |
+| `passwordHash` | string   | bcrypt hash; never sent to the browser |
+| `createdAt`    | Date     |                                        |
+| `seed`         | boolean  | Only on seeded accounts                |
 
 ### `activities`
 
-| Field | Type | work | school | other |
-| --- | --- | --- | --- | --- |
-| `userId` | ObjectId | from the session | same | same |
-| `type` | `"work"`, `"school"` or `"other"` | | | |
-| `organization` | string | required | required | optional |
-| `title` | string | position | program | explanation |
-| `startMonth` | `YYYY-MM` | required | required | required |
-| `endMonth` | `YYYY-MM` or null | required unless current | same | same |
-| `isCurrent` | boolean | | | |
-| `contact` | `{ name, role, phone, email }` | optional | optional | optional |
-| `notes` | string | optional | optional | optional |
-| `createdAt`, `updatedAt` | Date | | | |
+| Field                    | Type                              | work                    | school   | other       |
+| ------------------------ | --------------------------------- | ----------------------- | -------- | ----------- |
+| `userId`                 | ObjectId                          | from the session        | same     | same        |
+| `type`                   | `"work"`, `"school"` or `"other"` |                         |          |             |
+| `organization`           | string                            | required                | required | optional    |
+| `title`                  | string                            | position                | program  | explanation |
+| `startMonth`             | `YYYY-MM`                         | required                | required | required    |
+| `endMonth`               | `YYYY-MM` or null                 | required unless current | same     | same        |
+| `isCurrent`              | boolean                           |                         |          |             |
+| `contact`                | `{ name, role, phone, email }`    | optional                | optional | optional    |
+| `notes`                  | string                            | optional                | optional | optional    |
+| `createdAt`, `updatedAt` | Date                              |                         |          |             |
 
 The end month can't be before the start month. Several current records are allowed at once.
 Index: `{ userId: 1, startMonth: 1 }`.
 
 ### `addresses`
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| `userId` | ObjectId | From the session |
-| `street` | string | Required |
-| `unit` | string | Optional |
-| `city` | string | Required |
-| `state` | string | Optional |
-| `zip` | string | Optional |
-| `country` | string | Required. The form starts with United States |
-| `startMonth` | `YYYY-MM` | Required |
-| `endMonth` | `YYYY-MM` or null | Required unless current |
-| `current` | boolean | True for the address the user lives at now |
-| `landlordName`, `landlordPhone`, `landlordEmail` | string | Optional |
-| `notes` | string | Optional |
-| `createdAt`, `updatedAt` | Date | |
-| `seeded` | boolean | Only on seeded addresses |
+| Field                                            | Type              | Notes                                        |
+| ------------------------------------------------ | ----------------- | -------------------------------------------- |
+| `userId`                                         | ObjectId          | From the session                             |
+| `street`                                         | string            | Required                                     |
+| `unit`                                           | string            | Optional                                     |
+| `city`                                           | string            | Required                                     |
+| `state`                                          | string            | Optional                                     |
+| `zip`                                            | string            | Optional                                     |
+| `country`                                        | string            | Required. The form starts with United States |
+| `startMonth`                                     | `YYYY-MM`         | Required                                     |
+| `endMonth`                                       | `YYYY-MM` or null | Required unless current                      |
+| `current`                                        | boolean           | True for the address the user lives at now   |
+| `landlordName`, `landlordPhone`, `landlordEmail` | string            | Optional                                     |
+| `notes`                                          | string            | Optional                                     |
+| `createdAt`, `updatedAt`                         | Date              |                                              |
+| `seeded`                                         | boolean           | Only on seeded addresses                     |
 
 The end month can't be before the start month. A text field holds at most 200 characters and
 the notes hold at most 1,000. The seed creates the index `{ userId: 1, startMonth: -1 }`.
@@ -188,22 +188,22 @@ the notes hold at most 1,000. The seed creates the index `{ userId: 1, startMont
 All `/api/activities` and `/api/addresses` routes need a session and only touch the logged-in
 user's records.
 
-| Method | Route | Does |
-| --- | --- | --- |
-| POST | `/api/register` | Create an account (409 if the username is taken) |
-| POST | `/api/login` | Log in |
-| POST | `/api/logout` | Log out |
-| GET | `/api/me` | Who is logged in (401 if nobody) |
-| GET | `/api/activities` | List my activities, newest first |
-| GET | `/api/activities/gaps?years=10` | Month counts, gaps and timeline segments |
-| POST | `/api/activities` | Add one (201, or 400 with `{ errors }`) |
-| PUT | `/api/activities/:id` | Edit one of mine (404 if it isn't mine) |
-| DELETE | `/api/activities/:id` | Delete one of mine (204, or 404) |
-| GET | `/api/addresses?q=` | List my addresses, newest first, with the gap and overlap check. `q` filters the list by street, city or landlord |
-| GET | `/api/addresses/:id` | Read one of mine (404 if it isn't mine) |
-| POST | `/api/addresses` | Add one (201, or 400 with `{ error, errors }`) |
-| PUT | `/api/addresses/:id` | Edit one of mine (404 if it isn't mine) |
-| DELETE | `/api/addresses/:id` | Delete one of mine (200, or 404) |
+| Method | Route                           | Does                                                                                                              |
+| ------ | ------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| POST   | `/api/register`                 | Create an account (409 if the username is taken)                                                                  |
+| POST   | `/api/login`                    | Log in                                                                                                            |
+| POST   | `/api/logout`                   | Log out                                                                                                           |
+| GET    | `/api/me`                       | Who is logged in (401 if nobody)                                                                                  |
+| GET    | `/api/activities`               | List my activities, newest first                                                                                  |
+| GET    | `/api/activities/gaps?years=10` | Month counts, gaps and timeline segments                                                                          |
+| POST   | `/api/activities`               | Add one (201, or 400 with `{ errors }`)                                                                           |
+| PUT    | `/api/activities/:id`           | Edit one of mine (404 if it isn't mine)                                                                           |
+| DELETE | `/api/activities/:id`           | Delete one of mine (204, or 404)                                                                                  |
+| GET    | `/api/addresses?q=`             | List my addresses, newest first, with the gap and overlap check. `q` filters the list by street, city or landlord |
+| GET    | `/api/addresses/:id`            | Read one of mine (404 if it isn't mine)                                                                           |
+| POST   | `/api/addresses`                | Add one (201, or 400 with `{ error, errors }`)                                                                    |
+| PUT    | `/api/addresses/:id`            | Edit one of mine (404 if it isn't mine)                                                                           |
+| DELETE | `/api/addresses/:id`            | Delete one of mine (200, or 404)                                                                                  |
 
 The gaps response (shortened; `coveredMonths` includes the explained months):
 
@@ -384,15 +384,15 @@ and 06 show the two address pages.
 
 ### Colors
 
-| Use | Color |
-| --- | --- |
-| Header and footer background | `#1E293B` |
-| Header and footer main text | `#FFFFFF` |
-| Header and footer secondary text | `#CBD5E1` |
-| Work | `#0B5ED7` |
-| School | `#198754` |
-| Other (explained) | `#0AA2C0` |
-| Gap (months unrecorded) | `#FFD966` |
+| Use                               | Color     |
+| --------------------------------- | --------- |
+| Header and footer background      | `#1E293B` |
+| Header and footer main text       | `#FFFFFF` |
+| Header and footer secondary text  | `#CBD5E1` |
+| Work                              | `#0B5ED7` |
+| School                            | `#198754` |
+| Other (explained)                 | `#0AA2C0` |
+| Gap (months unrecorded)           | `#FFD966` |
 | Overlap (months at two addresses) | `#F8D7DA` |
 
 The colors of this table are CSS variables in `frontend/src/index.css`.
@@ -433,12 +433,12 @@ The colors of this table are CSS variables in `frontend/src/index.css`.
 
 Demo accounts (password `nogaps-demo`):
 
-| Account | Jobs & Schools | Addresses |
-| --- | --- | --- |
-| `demo.gaps` | A gap at the start of the range (3 months in November 2026), a 3-month gap and 18 explained months | A 3-month gap and a 2-month overlap |
-| `demo.complete` | No gaps; school and a part-time job overlap | No gaps and no overlaps |
-| `demo.explained` | A break covered by an explained period | No gaps and a 3-month overlap |
-| `demo.empty` | An empty history | An empty history |
+| Account          | Jobs & Schools                                                                                     | Addresses                           |
+| ---------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| `demo.gaps`      | A gap at the start of the range (3 months in November 2026), a 3-month gap and 18 explained months | A 3-month gap and a 2-month overlap |
+| `demo.complete`  | No gaps; school and a part-time job overlap                                                        | No gaps and no overlaps             |
+| `demo.explained` | A break covered by an explained period                                                             | No gaps and a 3-month overlap       |
+| `demo.empty`     | An empty history                                                                                   | An empty history                    |
 
 ## 10. Tech stack
 
